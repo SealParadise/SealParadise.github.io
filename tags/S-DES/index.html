@@ -58,8 +58,152 @@
 </head>
 
 
+ 
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
 
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500);
+        },1000);//强制显示loading page 1s
+    };
+    loaded();
+})()
+</script>
+
+ 
 <body>
+    
+        <div id="loading-container">
+             <p class="loading-text">嘘~  听雨落的声音 . . . </p>
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div>
+             </div>
+        </div>
     
 
     <header class="navbar-fixed">
@@ -449,10 +593,10 @@
                 </a>
                 
                 
-                <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/" title="用户指南: 2">
+                <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" title="开发手册: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="用户指南" style="background-color: #F8F9F9;">用户指南
+                            data-tagname="开发手册" style="background-color: #F8F9F9;">开发手册
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -467,20 +611,20 @@
                 </a>
                 
                 
-                <a href="/tags/S-DES/" title="S-DES: 3">
+                <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/" title="用户指南: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="S-DES" style="background-color: #D7BDE2;">S-DES
-                        <span class="tag-length">3</span>
+                             chip-default "
+                            data-tagname="用户指南" style="background-color: #D7BDE2;">用户指南
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" title="开发手册: 2">
+                <a href="/tags/S-DES/" title="S-DES: 3">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="开发手册" style="background-color: #A3E4D7;">开发手册
-                        <span class="tag-length">2</span>
+                             chip-active "
+                            data-tagname="S-DES" style="background-color: #A3E4D7;">S-DES
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -603,7 +747,7 @@
         <div class="row tags-posts">
             
             
-            <div class="article tag-post col s12 m6 l4" data-tags="信息安全导论, 用户指南, 大三上, S-DES" data-aos="fade-up">
+            <div class="article tag-post col s12 m6 l4" data-tags="信息安全导论, 大三上, 用户指南, S-DES" data-aos="fade-up">
                 <div class="card">
                     <a href="/2023/10/30/s-des-yong-hu-zhi-nan/">
                         <div class="card-image tag-image">
@@ -635,7 +779,7 @@
             </div>
             
             
-            <div class="article tag-post col s12 m6 l4" data-tags="信息安全导论, 大三上, S-DES, 开发手册" data-aos="fade-up">
+            <div class="article tag-post col s12 m6 l4" data-tags="信息安全导论, 开发手册, 大三上, S-DES" data-aos="fade-up">
                 <div class="card">
                     <a href="/2023/10/30/s-des-kai-fa-shou-ce/">
                         <div class="card-image tag-image">
@@ -773,6 +917,7 @@
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             
+            <br>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
@@ -990,6 +1135,15 @@ $(function () {
 
     
     
+    
+        
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/sakura.js"><\/script>');
+            }
+        </script>
     
 
     <!-- 雪花特效 -->
