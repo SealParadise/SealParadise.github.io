@@ -1,0 +1,2251 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="S-DES开发手册, SealParadise">
+    <meta name="description" content="本手册旨在提供有关S-DES算法实现程序的详细开发和使用信息。它包括了安装、配置、使用说明、实现细节以及测试等方面的信息，以帮助开发者正确使用和理解该程序。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>S-DES开发手册 | SealParadise</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="SealParadise" type="application/atom+xml">
+</head>
+
+
+
+<body>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">SealParadise</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">SealParadise</div>
+        <div class="logo-desc">
+            
+            山中何事？ 松花酿酒，春水煎茶。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/SealParadise/SealParadise.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/SealParadise/SealParadise.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/34.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">S-DES开发手册</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                                <span class="chip bg-color">信息安全导论</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                                <span class="chip bg-color">大三上</span>
+                            </a>
+                        
+                            <a href="/tags/S-DES/">
+                                <span class="chip bg-color">S-DES</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                                <span class="chip bg-color">开发手册</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                大三上
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-10-30
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    41 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Andrade-S-DES-开发手册"><a href="#Andrade-S-DES-开发手册" class="headerlink" title="Andrade S-DES 开发手册"></a>Andrade S-DES 开发手册</h1><p>开发人员：徐涵浩 明子鸿</p>
+<p>手册撰写人员：明子鸿 徐涵浩</p>
+<p>单位：重庆大学大数据与软件学院</p>
+<p>联系方式：<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a></p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><h3 id="1-1-关于本手册"><a href="#1-1-关于本手册" class="headerlink" title="1.1 关于本手册"></a>1.1 关于本手册</h3><p>​	本手册旨在提供有关S-DES算法实现程序的详细开发和使用信息。它包括了安装、配置、使用说明、实现细节以及测试等方面的信息，以帮助开发者正确使用和理解该程序。</p>
+<h3 id="1-2-目标与范围"><a href="#1-2-目标与范围" class="headerlink" title="1.2 目标与范围"></a>1.2 目标与范围</h3><p>​	编写S-DES（Simplified Data Encryption Standard）开发手册的主要目的是为了确保开发和使用S-DES算法实现程序的顺利进行，提供清晰的文档和指南，以支持用户、开发团队和维护人员，旨在提高程序的可维护性、可用性和用户体验的同时促进团队内部的知识共享和合作。主要包括以下目标：</p>
+<p>​	①<strong>提供使用指南</strong>：Andrade S-DES开发手册旨在向开发者和用户提供清晰、易于理解的使用指南。它详细说明了如何安装、配置、编译和使用S-DES算法实现程序，以确保用户能够正确地运行和使用该工具;</p>
+<p>​	②<strong>解释算法原理</strong>：手册解释了S-DES算法的原理和工作流程。这有助于用户理解程序内部的加密和解密过程，以及如何选择适当的输入数据和密钥;</p>
+<p>​	③<strong>提供实现细节</strong>：开发手册涵盖了程序的实现细节，包括程序结构、数据处理流程、密钥生成和用户界面设计等方面。这对于开发团队的成员来说是一个重要的参考资源，帮助他们理解和维护代码;</p>
+<p>​	④<strong>提供常见问题解答</strong>：手册包括了一章关于常见问题与故障排除，以帮助用户解决可能遇到的问题。这有助于提高用户的使用体验并减少潜在的困惑;</p>
+<p>​	⑤<strong>促进知识传递</strong>：编写手册有助于知识的传递和分享。新成员可以通过手册快速了解项目，并且可以在团队内部共享和学习最佳实践;</p>
+<p>​	⑥<strong>支持维护与更新</strong>：随着时间的推移，软件项目需要进行维护和更新。手册可以帮助开发团队理解项目的历史和设计决策，从而更好地管理和维护代码。</p>
+<h2 id="2-项目概述"><a href="#2-项目概述" class="headerlink" title="2. 项目概述"></a>2. 项目概述</h2><h3 id="2-1-项目描述"><a href="#2-1-项目描述" class="headerlink" title="2.1 项目描述"></a>2.1 项目描述</h3><p>​	S-DES算法实现程序是一个用于演示和理解Simplified Data Encryption Standard（S-DES）算法的工具。它提供了加密、解密和暴力破解密钥功能，支持用户交互，并可接受8bit二进制数据（或ASCⅡ编码字符串）和10位密钥。</p>
+<h3 id="2-2-功能特性"><a href="#2-2-功能特性" class="headerlink" title="2.2 功能特性"></a>2.2 功能特性</h3><ul>
+<li>加密和解密功能</li>
+<li>支持8bit二进制数据和ASCⅡ编码字符串输入</li>
+<li>支持10位密钥的输入和随机生成</li>
+<li>提供对已知明密文对进行密钥暴力破解的功能</li>
+<li>提供图形用户界面（GUI）支持</li>
+</ul>
+<h3 id="2-3-技术栈"><a href="#2-3-技术栈" class="headerlink" title="2.3 技术栈"></a>2.3 技术栈</h3><ul>
+<li>编程语言：Java</li>
+<li>版本控制：Git</li>
+<li>依赖管理：Maven</li>
+</ul>
+<h2 id="3-安装与配置"><a href="#3-安装与配置" class="headerlink" title="3. 安装与配置"></a>3. 安装与配置</h2><h3 id="3-1-环境要求"><a href="#3-1-环境要求" class="headerlink" title="3.1 环境要求"></a>3.1 环境要求</h3><ul>
+<li>操作系统：Windows 10/11</li>
+<li>Java JDK：1.8及以上</li>
+</ul>
+<h3 id="3-2-获取源代码"><a href="#3-2-获取源代码" class="headerlink" title="3.2 获取源代码"></a>3.2 获取源代码</h3><ul>
+<li>源代码仓库：<a target="_blank" rel="noopener" href="https://github.com/m916662613/Andrade-S-DES">https://github.com/m916662613/Andrade-S-DES</a></li>
+</ul>
+<h3 id="3-3-构建与编译"><a href="#3-3-构建与编译" class="headerlink" title="3.3 构建与编译"></a>3.3 构建与编译</h3><ul>
+<li>构建工具：Maven</li>
+<li>编译代码：使用IntelliJ IDEA编译运行代码</li>
+</ul>
+<h2 id="4-程序结构"><a href="#4-程序结构" class="headerlink" title="4. 程序结构"></a>4. 程序结构</h2><h3 id="4-1-目录结构"><a href="#4-1-目录结构" class="headerlink" title="4.1 目录结构"></a>4.1 目录结构</h3><img src="/2023/10/30/s-des-kai-fa-shou-ce/img43.png" class="" title="img43">
+
+
+
+<h3 id="4-2-主要组件"><a href="#4-2-主要组件" class="headerlink" title="4.2 主要组件"></a>4.2 主要组件</h3><h4 id="4-2-1-子密钥生成"><a href="#4-2-1-子密钥生成" class="headerlink" title="4.2.1 子密钥生成"></a>4.2.1 子密钥生成</h4><p>​	①首先，使用P10置换盒对初始密钥<code>key</code>进行置换和压缩，生成一个包含10位的子密钥<code>subKeyA</code>，并将<code>key</code>的副本赋给<code>subKeyB</code>；</p>
+<p>​	②接下来，将<code>subKeyA</code>分成两部分，分别为<code>keyLeft</code>和<code>keyRight</code>，然后对这两部分进行左移操作；</p>
+<p>​	③将左移后的<code>keyLeft</code>和<code>keyRight</code>重新拼接成<code>subKeyB</code>，然后使用P8置换盒，从<code>subKeyB</code>中取出8位字符，生成k1；</p>
+<p>​	④再次对<code>keyLeft</code>和<code>keyRight</code>进行左移操作，得到新的<code>subKeyB</code>，然后再次使用P8置换盒，从<code>subKeyB</code>中取出8位字符，生成k2；</p>
+<p>​	⑤最后，将生成的k1和k2赋值给相应的变量。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void setK12(){ //由密钥获得k1 k2的方法
+    //使用P10和P8盒进行置换和压缩，生成两个8位的子密钥
+    String subKeyA = "";
+    String subKeyB = key;
+
+    for (int i = 1; i &lt;= 10; i++){//P10 Box 操作
+        //按照P10盒的顺序从密钥中取出对应的字符，拼接成新的字符串
+        subKeyA = subKeyA + subKeyB.charAt(P10.get(i) - 1);
+    }
+
+    //分割字符串 分别做leftshift
+    String keyLeft = leftShift(subKeyA.substring(0,5)); //将左半部分字符串左移一位
+    String keyRight = leftShift(subKeyA.substring(5)); //将右半部分字符串左移一位
+    subKeyB = keyLeft + keyRight; //拼接左右两部分字符串
+
+    subKeyA = "";
+
+    for (int i = 1; i&lt;= 8; i++){//P8 Box for k1
+        //按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k1
+        subKeyA = subKeyA + subKeyB.charAt(P8.get(i) - 1);
+    }
+
+    k1 = subKeyA; //设置k1
+
+    subKeyA = "";
+
+    //分别做leftshift
+    keyLeft = leftShift(keyLeft); //将左半部分字符串再次左移一位
+    keyRight = leftShift(keyRight); //将右半部分字符串再次左移一位
+    subKeyB = keyLeft + keyRight; //拼接左右两部分字符串
+
+    for (int i = 1; i&lt;= 8; i++){//P8 Box for k2
+        //按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k2
+        subKeyA = subKeyA + subKeyB.charAt(P8.get(i) - 1);;
+    }
+
+    k2 = subKeyA; //设置k2
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-2-置换盒、子密钥初始化"><a href="#4-2-2-置换盒、子密钥初始化" class="headerlink" title="4.2.2 置换盒、子密钥初始化"></a>4.2.2 置换盒、子密钥初始化</h4><p>​	①类<code>sDES</code>包含了一些成员变量，用于存储S-DES算法所需的数据，包括原始文本<code>original</code>、密钥<code>key</code>、子密钥<code>k1</code>和<code>k2</code>以及最终结果<code>result</code>；</p>
+<p>​	②使用<code>HashMap</code>来定义多个置换盒（Permutation Box）和S-Box，这些盒子用于S-DES算法中的置换和替代操作。具体包括：</p>
+<p>​		a)<code>ipBox</code>和<code>ipFinalBox</code>：用于初始置换（Initial Permutation）和最终置换（Final Permutation）；</p>
+<p>​		b)<code>P10</code>和<code>P8</code>：用于生成子密钥的置换和压缩；</p>
+<p>​		c)<code>epBox</code>：用于扩展置换（Expansion Permutation）；</p>
+<p>​		d)<code>spBox</code>：用于S盒操作的置换；</p>
+<p>​		e)<code>sBox1</code>和<code>sBox2</code>：S-DES算法中使用的两个S-Box；</p>
+<p>​	③构造函数<code>public sDES(String key, String original)</code>接受两个参数，分别是初始密钥<code>key</code>和原始文本<code>original</code>。在构造函数中，首先初始化了类的成员变量<code>key</code>和<code>original</code>；</p>
+<p>​	④随后，为各个置换盒和S-Box填充了预定义的映射关系；</p>
+<p>​	⑤最后，调用了<code>setK12()</code>方法，用于生成S-DES算法中的子密钥k1和k2。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public String original,key,k1,k2,result;
+HashMap&lt;Integer,Integer&gt; ipBox = new HashMap&lt;Integer,Integer&gt;();
+HashMap&lt;Integer,Integer&gt; ipFinalBox = new HashMap&lt;Integer,Integer&gt;();
+HashMap&lt;Integer,Integer&gt; P10 = new HashMap&lt;Integer,Integer&gt;();
+HashMap&lt;Integer,Integer&gt; P8 = new HashMap&lt;Integer,Integer&gt;();
+HashMap&lt;Integer,Integer&gt; epBox = new HashMap&lt;Integer,Integer&gt;();
+HashMap&lt;String,HashMap&lt;String,String&gt;&gt; sBox1 = new HashMap&lt;String,HashMap&lt;String,String&gt;&gt;();
+HashMap&lt;String,HashMap&lt;String,String&gt;&gt; sBox2 = new HashMap&lt;String,HashMap&lt;String,String&gt;&gt;();
+HashMap&lt;Integer,Integer&gt; spBox = new HashMap&lt;Integer,Integer&gt;();
+
+public sDES(String key, String original){//初始化 密钥key 起始字符串original ipBox等转换盒
+
+    this.key = key;
+
+    this.original = original;
+
+    ipBox.put(1,2);
+    ipBox.put(2,6);
+    ipBox.put(3,3);
+    ipBox.put(4,1);
+    ipBox.put(5,4);
+    ipBox.put(6,8);
+    ipBox.put(7,5);
+    ipBox.put(8,7);
+
+    ipFinalBox.put(1,4);
+    ipFinalBox.put(2,1);
+    ipFinalBox.put(3,3);
+    ipFinalBox.put(4,5);
+    ipFinalBox.put(5,7);
+    ipFinalBox.put(6,2);
+    ipFinalBox.put(7,8);
+    ipFinalBox.put(8,6);
+
+    P10.put(1,3);
+    P10.put(2,5);
+    P10.put(3,2);
+    P10.put(4,7);
+    P10.put(5,4);
+    P10.put(6,10);
+    P10.put(7,1);
+    P10.put(8,9);
+    P10.put(9,8);
+    P10.put(10,6);
+
+    P8.put(1,6);
+    P8.put(2,3);
+    P8.put(3,7);
+    P8.put(4,4);
+    P8.put(5,8);
+    P8.put(6,5);
+    P8.put(7,10);
+    P8.put(8,9);
+
+
+    epBox.put(1,4);
+    epBox.put(2,1);
+    epBox.put(3,2);
+    epBox.put(4,3);
+    epBox.put(5,2);
+    epBox.put(6,3);
+    epBox.put(7,4);
+    epBox.put(8,1);
+
+    spBox.put(1,2);
+    spBox.put(2,4);
+    spBox.put(3,3);
+    spBox.put(4,1);
+
+    sBox1.put("00",new HashMap&lt;String, String&gt;());
+    sBox1.get("00").put("00","01");
+    sBox1.get("00").put("01","00");
+    sBox1.get("00").put("10","11");
+    sBox1.get("00").put("11","10");
+
+    sBox1.put("01",new HashMap&lt;String, String&gt;());
+    sBox1.get("01").put("00","11");
+    sBox1.get("01").put("01","10");
+    sBox1.get("01").put("10","01");
+    sBox1.get("01").put("11","00");
+
+    sBox1.put("10",new HashMap&lt;String, String&gt;());
+    sBox1.get("10").put("00","00");
+    sBox1.get("10").put("01","10");
+    sBox1.get("10").put("10","01");
+    sBox1.get("10").put("11","11");
+
+    sBox1.put("11",new HashMap&lt;String, String&gt;());
+    sBox1.get("11").put("00","11");
+    sBox1.get("11").put("01","01");
+    sBox1.get("11").put("10","00");
+    sBox1.get("11").put("11","10");
+
+    sBox2.put("00",new HashMap&lt;String, String&gt;());
+    sBox2.get("00").put("00","00");
+    sBox2.get("00").put("01","01");
+    sBox2.get("00").put("10","10");
+    sBox2.get("00").put("11","11");
+
+    sBox2.put("01",new HashMap&lt;String, String&gt;());
+    sBox2.get("01").put("00","10");
+    sBox2.get("01").put("01","11");
+    sBox2.get("01").put("10","01");
+    sBox2.get("01").put("11","00");
+
+    sBox2.put("10",new HashMap&lt;String, String&gt;());
+    sBox2.get("10").put("00","11");
+    sBox2.get("10").put("01","00");
+    sBox2.get("10").put("10","01");
+    sBox2.get("10").put("11","10");
+
+    sBox2.put("11",new HashMap&lt;String, String&gt;());
+    sBox2.get("11").put("00","10");
+    sBox2.get("11").put("01","01");
+    sBox2.get("11").put("10","00");
+    sBox2.get("11").put("11","11");
+
+    setK12();
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-3-置换、异或运算、S盒替代等方法"><a href="#4-2-3-置换、异或运算、S盒替代等方法" class="headerlink" title="4.2.3 置换、异或运算、S盒替代等方法"></a>4.2.3 置换、异或运算、S盒替代等方法</h4><p>​	①<code>leftShift(String halfKey)</code> 方法用于将输入的二进制字符串左移一位；</p>
+<p>​	②<code>IP(String original)</code> 方法用于将输入的二进制字符串按照IP置换表进行置换；</p>
+<p>​	③<code>ipFinal(String fin)</code> 方法用于将输入的二进制字符串按照IP逆置换表进行置换；</p>
+<p>​	④<code>plus(String a, String b)</code> 方法实现二进制字符串的异或运算；</p>
+<p>​	⑤<code>F(String input, String k12)</code> 方法执行S-DES算法中的F操作，包括扩展置换（EP）、S盒替代和置换（SP）；</p>
+<p>​	⑥<code>DES(String input, String k12)</code> 方法执行S-DES算法中的DES操作，包括将输入的字符串分为左右两部分，与k12进行F操作，然后将左半部分与F操作的结果进行异或运算。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public String leftShift(String halfKey){ //字符串左移一位的方法
+
+    String str1 = halfKey.substring(1); //截取第二个字符到最后一个字符
+
+    String str2 = halfKey.substring(0,1);//截取第一个字符
+
+    return str1 + str2;//返回拼接字符串
+}
+public String IP(String original){//将输入的字符串按照IP置换表进行置换
+    String res = "";
+    for (int i = 1; i &lt;= 8; i++){
+        res = res + original.charAt(ipBox.get(i) - 1);
+    }
+
+    return res;
+}
+
+public String ipFinal(String fin){//将输入的字符串按照IP逆置换表进行置换
+    String res = "";
+    for (int i = 1; i &lt;= 8; i++){
+        res = res + fin.charAt(ipFinalBox.get(i) - 1);
+    }
+
+    return res;
+}
+
+public String plus(String a ,String b){ //异或操作 Out = a 异或 b
+    //对两个二进制字符串进行异或操作
+    String res = "";
+    for (int i = 0; i &lt; a.length(); i++){
+        if (a.charAt(i) == b.charAt(i)){
+            res = res + "0";
+        }else{
+            res = res + "1";
+        }
+    }
+
+    return res;
+}
+
+public String F(String input,String k12){//F操作 Out = In.F(k_In)
+    //将输入的字符串按照EP置换表进行置换
+    String output = "";
+    String tem = "";
+    for (int i = 1; i &lt;= 8; i++){// EP 操作
+        tem = tem + input.charAt(epBox.get(i) - 1);
+    }
+
+    //将EP置换后的字符串与k12进行异或操作
+    tem = plus(tem,k12);
+
+    //分割字符串 获得S box的四个下标
+    char[] index1 = {tem.charAt(0),tem.charAt(3)};
+    char[] index2 = {tem.charAt(4),tem.charAt(7)};
+
+    //将S box操作后的结果拼接起来
+    tem = sBox1.get(new String(index1)).get(tem.substring(1,3)) + sBox2.get(new String(index2)).get(tem.substring(5,7));
+
+    //将S box操作后的结果按照SP置换表进行置换
+    for (int i = 1; i &lt;= 4; i++){
+        output = output + tem.charAt(spBox.get(i) - 1);
+    }
+
+    return output;
+}
+
+public String DES(String input, String k12){ //DES操作
+    //将输入的字符串分为左右两部分
+    String Left = input.substring(0,4);
+    String Right = input.substring(4);
+
+    //将右半部分字符串与k12进行F操作
+    String fTem = F(Right,k12);
+
+    //将左半部分字符串与F操作后的结果进行异或操作
+    Left = plus(Left, fTem);
+
+    return Right + Left;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-4-加密解密方法"><a href="#4-2-4-加密解密方法" class="headerlink" title="4.2.4 加密解密方法"></a>4.2.4 加密解密方法</h4><p>​	①<code>enCode()</code> 方法用于执行S-DES算法的加密操作，包括按照IP置换表置换、两轮DES操作、字符串前后交换和IP逆置换；</p>
+<p>​	②<code>deCode()</code> 方法用于执行S-DES算法的解密操作，也包括按照IP置换表置换、两轮DES操作、字符串前后交换和IP逆置换。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void enCode(){ //加密方法 Effect = 设置this.result 为original的加密结果
+    //将输入的字符串按照IP置换表进行置换
+    String tem = IP(original);
+
+    //将置换后的字符串分别与k1和k2进行DES操作
+    tem = DES(tem,k1);
+    tem = DES(tem,k2);
+
+    //将DES操作后的字符串前后交换
+    tem = tem.substring(4) + tem.substring(0,4);
+
+    //将交换后的字符串按照IP逆置换表进行置换
+    result = ipFinal(tem);
+}
+
+public void deCode(){ //解密方法 Effect = 设置this.result 为original的解密结果
+    //将输入的字符串按照IP置换表进行置换
+    String tem = IP(original);
+
+    //将置换后的字符串分别与k2和k1进行DES操作
+    tem = DES(tem,k2);
+    tem = DES(tem,k1);
+
+    //将DES操作后的字符串前后交换
+    tem = tem.substring(4) + tem.substring(0,4);
+
+    //将交换后的字符串按照IP逆置换表进行置换
+    result = ipFinal(tem);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-5-程序启动模块"><a href="#4-2-5-程序启动模块" class="headerlink" title="4.2.5 程序启动模块"></a>4.2.5 程序启动模块</h4><p>​	①<code>public static void main(String[] args)</code> 方法是Java应用程序的入口点，它调用<code>launch(args)</code>来启动JavaFX应用程序;</p>
+<p>​	②<code>public void start(Stage primaryStage) throws IOException</code> 是JavaFX的Application类中的方法，它是JavaFX应用程序的主要入口点。在这个方法中，主要的操作包括：</p>
+<p>​	a)创建两个FXMLLoader对象，分别用于加载”des.fxml”和”violent.fxml”两个FXML文件，这些文件用于定义应用程序的用户界面;</p>
+<p>​	b)使用这两个FXMLLoader对象加载FXML文件，并得到它们的根节点（Parent）;</p>
+<p>​	c)通过<code>getController()</code>方法获取与这两个FXML文件关联的Controller对象，即<code>desController</code>和<code>violentController</code>，这些Controller类负责管理界面的行为和交互;</p>
+<p>​	d)创建一个Stage对象，用于表示主界面，并设置其标题为”S-DES”，然后将主界面的根节点设置为加载的<code>des.fxml</code>文件的根节点，最后显示主界面;</p>
+<p>​	e)创建另一个Stage对象，用于表示”Violent Decode”界面，并设置其标题为”Violent Decode”，然后将其根节点设置为加载的<code>violent.fxml</code>文件的根节点，最后显示”Violent Decode”界面。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class mainApp extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {// javafx + fxml 获取ui
+        //加载fxml文件
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/des.fxml"));
+        FXMLLoader violentLoader = new FXMLLoader(getClass().getResource("/violent.fxml"));
+
+        //加载父结点
+        Parent root = mainLoader.load();
+        Parent parent = violentLoader.load();
+
+        //获取Controller
+        desController controller = mainLoader.getController();
+        violentController violentController = violentLoader.getController();
+
+        //显示Stage设置
+        primaryStage.setTitle("S-DES");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
+        Stage vioStage = new Stage();
+        vioStage.setTitle("Violent Decode");
+        vioStage.setScene(new Scene(parent));
+        vioStage.show();
+
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-6-加解密主界面控制器"><a href="#4-2-6-加解密主界面控制器" class="headerlink" title="4.2.6 加解密主界面控制器"></a>4.2.6 加解密主界面控制器</h4><p>​	①<code>@FXML</code> 注解用于标记FXML文件中的UI组件，这些组件在Controller类中被引用和操作;</p>
+<p>​	②<code>void Encode(ActionEvent event)</code> 方法是加密按钮的事件处理方法。它执行以下操作：</p>
+<p>​		a)检查输入的密钥和明文的长度是否符合规范（密钥长度为10位，明文长度为8位）或者是否选择了ASCII字符输入;</p>
+<p>​		b)如果选择了ASCII字符输入，则将明文逐字符转换为二进制，进行S-DES加密，然后将加密结果转换为ASCII字符;</p>
+<p>​		c)如果没有选择ASCII字符输入，则直接进行S-DES加密;</p>
+<p>​		d)将加密结果显示在<code>encodeRes</code>文本框中;</p>
+<p>​	③<code>void Decode(ActionEvent event)</code> 方法是解密按钮的事件处理方法，与加密按钮方法类似，但是执行的是S-DES解密操作，并将解密结果显示在<code>decodeRes</code>文本框中;</p>
+<p>​	④<code>void randomKey(ActionEvent event)</code> 方法用于生成随机的10位密钥，并将其显示在<code>keyField</code>文本框中;</p>
+<p>​	⑤<code>void initialize()</code> 方法是JavaFX的初始化方法，在界面加载后自动调用。它设置<code>encodeRes</code>和<code>decodeRes</code>文本框为不可编辑状态，以防止用户手动输入。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+
+public class desController {//UI controller
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private CheckBox checkBox;
+
+    @FXML
+    private TextField keyField;
+
+    @FXML
+    private TextField decodeSou;
+
+    @FXML
+    TextField decodeRes;
+
+    @FXML
+    private TextField encodeSou;
+
+    @FXML
+    TextField encodeRes;
+
+    @FXML
+    void Encode(ActionEvent event) {//加密按钮方法
+
+        if ((keyField.getText().length() == 10 &amp;&amp; encodeSou.getText().length() == 8 ) || checkBox.isSelected()){//检测输入格式
+
+            if (checkBox.isSelected()){//检测输入类型 二进制 or ascii
+
+                String res = "";
+                //逐字符读取
+                for (int i = 0; i &lt; encodeSou.getText().length(); i++){
+                    String tem = Integer.toBinaryString((int) encodeSou.getText().charAt(i));
+
+                    //二进制补0
+                    while (tem.length() &lt; 8) {
+                        tem = "0" + tem;
+                    }
+
+                    //读取输入并初始化编码器
+                    sDES encoder = new sDES(keyField.getText(),tem);
+                    encoder.enCode();//加密操作
+
+                    //将加密结果转化成ascii字符加入输出集
+                    res = res + (char)Integer.parseInt(encoder.result,2);
+                }
+                //显示输出集
+                encodeRes.setText(res);
+            }else {
+                //读取输入并初始化编码器
+                sDES encoder = new sDES(keyField.getText(), encodeSou.getText());
+                encoder.enCode();//加密操作
+
+                //显示输出集
+                encodeRes.setText(encoder.result);
+            }
+        }else {
+            //错误输入反馈
+            encodeRes.setText("明文/密钥数量不规范");
+        }
+    }
+
+    @FXML
+    void Decode(ActionEvent event) {//解密按钮方法
+
+        if ((keyField.getText().length() == 10 &amp;&amp; decodeSou.getText().length() == 8) || checkBox.isSelected()){//检测输入格式
+
+            if (checkBox.isSelected()){//检测输入类型 二进制 or ascii
+
+                String res = "";
+                //逐字符读取
+                for (int i = 0; i &lt; decodeSou.getText().length(); i++){
+
+                    String tem = Integer.toBinaryString((int) decodeSou.getText().charAt(i));
+                    //二进制补0
+                    while (tem.length() &lt; 8) {
+                        tem = "0" + tem;
+                    }
+
+                    //读取输入并初始化解码器
+                    sDES decoder = new sDES(keyField.getText(),tem);
+                    decoder.deCode();//解码操作
+
+                    //将解密结果转化成ascii字符加入输出集
+                    res = res + (char)Integer.parseInt(decoder.result,2);
+                }
+                //显示输出集
+                decodeRes.setText(res);
+
+            }else {
+                //读取输入并初始化解码器
+                sDES decoder = new sDES(keyField.getText(), decodeSou.getText());
+                decoder.deCode();//解码操作
+
+                //显示输出集
+                decodeRes.setText(decoder.result);
+            }
+        }else {
+            //错误输入反馈
+            decodeRes.setText("明文/密钥数量不规范");
+        }
+    }
+
+    @FXML
+    void randomKey(ActionEvent event) {//生成随机密钥并显示在keyField中
+        //生成0-1023间的随机数
+        Random random = new Random();
+        int num = random.nextInt(1023);
+
+        //将随机数转为二进制
+        String binary = Integer.toBinaryString(num);
+
+        //空位补0
+        while (binary.length() &lt; 10) {
+            binary = "0" + binary;
+        }
+
+        //显示密钥
+        keyField.setText(binary);
+    }
+
+    @FXML
+    void initialize() {//初始化UI界面 设置encode_res框为不可编辑
+        encodeRes.setEditable(false);
+        decodeRes.setEditable(false);
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-2-7-暴力破解界面控制器"><a href="#4-2-7-暴力破解界面控制器" class="headerlink" title="4.2.7 暴力破解界面控制器"></a>4.2.7 暴力破解界面控制器</h4><p>​	①<code>thread1</code>、<code>thread2</code> 和 <code>thread3</code> 是内部类，继承自 <code>Thread</code>，分别代表三个线程。它们负责在不同的密钥空间范围内执行密钥解密程序;</p>
+<p>​	②<code>public void Decode(int begin, int end, String th)</code> 方法是密钥解密程序，用于在指定的密钥范围内暴力破解密钥并查找匹配的密钥。它执行以下操作：</p>
+<p>​		a)遍历指定范围内的所有可能的密钥，将密钥转换为二进制形式;</p>
+<p>​		b)用每个密钥对原文进行 S-DES 加密;</p>
+<p>​		c)检查加密结果是否与给定的密文匹配，如果匹配则将该密钥存储在 <code>hash</code> 哈希表中，并记录已找到的密钥数量;</p>
+<p>​		d)输出每个找到的密钥及其对应的时间戳;</p>
+<p>​	③<code>violentDecode(ActionEvent event)</code> 方法是“暴力解密”按钮的事件处理方法。它执行以下操作：</p>
+<p>​		a)清空密钥显示区域 <code>keyArea</code>;</p>
+<p>​		b)创建两个线程 <code>thread1</code> 和 <code>thread2</code>，并启动它们，用于并行查找不同范围的密钥。注释部分的代码是单线程执行的示例，如果需要单线程破解，可以取消注释，并创建一个 <code>thread3</code> 线程;</p>
+<p>​	④<code>initialize()</code> 方法是JavaFX的初始化方法，在界面加载后自动调用。它执行以下操作：</p>
+<p>​		a)输出创建窗口的时间戳;</p>
+<p>​		b)设置密钥显示区域 <code>keyArea</code> 为不可编辑状态，以防止用户手动输入。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
+public class violentController {
+
+    class thread1 extends Thread{//线程1 查找一半密钥空间的线程 适用于双线程破解
+        public void run(){
+            Decode(0,511,"线程1： ");//暴力查找0-511中的密钥
+        }
+    }
+
+    class thread2 extends Thread{//线程2 查找一半密钥空间的线程
+        public void run(){
+            Decode(512,1023,"线程2： ");//暴力查找512-1023中的密钥
+        }
+    }
+
+    class thread3 extends Thread{//线程三 查找全部密钥空间的线程 适用于单线程破解
+        public void run(){
+            Decode(0,1023,"线程3： ");//暴力查找0-1023中的密钥
+        }
+    }
+
+    public void Decode(int begin, int end,String th){//密钥解密程序
+
+        HashMap&lt;Integer,String&gt; hash = new HashMap&lt;Integer,String&gt;();//创建存储密钥的哈希表
+        int amount = 0;//标记已查到的密钥数量
+
+        for (int i = begin; i &lt;= end; i++){//在指定的密钥空间遍历
+
+            String key = Integer.toBinaryString(i);//将密钥从十进制转二进制
+
+            //补0操作
+            while (key.length() &lt; 10) {
+                key = "0" + key;
+            }
+
+            //用遍历密钥同原文加密
+            sDES encoder = new sDES(key,originalText.getText());
+            encoder.enCode();
+
+            if (encoder.result.equals(secretText.getText())){//对照加密后原文是否与密文一致
+                //时间戳返回每次找到的时间
+                Long timeStamp = System.currentTimeMillis();
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:ms");
+                String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
+
+                //存储已查到的密钥
+                hash.put(amount,key);
+                amount++;//已查明密钥数量+1
+
+                //输出时间戳
+                System.out.println(th + "找到第"+amount+"个的时间：" + sd);
+            }
+        }
+        for (int i = 0; i &lt; amount; i++){//输出密钥集
+            keyArea.appendText("\n" + hash.get(i) );
+        }
+    }
+
+    @FXML
+    private TextField originalText;
+
+    @FXML
+    private TextField secretText;
+
+    @FXML
+    private TextArea keyArea;
+
+    @FXML
+    void violentDecode(ActionEvent event) {
+
+        keyArea.clear();
+        //双线程执行
+        thread1 thread1 = new thread1();
+        thread2 thread2 = new thread2();
+
+        thread1.start();
+        thread2.start();
+
+        /*
+        //单线程执行
+        thread3 thread3 = new thread3();
+        thread3.start();
+        */
+    }
+
+    @FXML
+    void initialize() {
+        //时间戳返回创建窗口的时间
+        Long timeStamp = System.currentTimeMillis();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:ms");
+        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
+        System.out.println("创建窗口时间：" + sd);
+
+        keyArea.setEditable(false);//初始化设置密钥显示区域不可编辑
+    }
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="5-实现细节"><a href="#5-实现细节" class="headerlink" title="5. 实现细节"></a>5. 实现细节</h2><h3 id="5-1-S-DES算法原理"><a href="#5-1-S-DES算法原理" class="headerlink" title="5.1 S-DES算法原理"></a>5.1 S-DES算法原理</h3><h4 id="5-1-1-总览"><a href="#5-1-1-总览" class="headerlink" title="5.1.1 总览"></a>5.1.1 总览</h4><img src="/2023/10/30/s-des-kai-fa-shou-ce/img45.png" class="" title="img45">
+
+
+
+<h4 id="5-1-2-标准设定"><a href="#5-1-2-标准设定" class="headerlink" title="5.1.2 标准设定"></a>5.1.2 标准设定</h4><p>​	①分组长度：8-bit；</p>
+<p>​	②密钥长度：10-bit；</p>
+<h4 id="5-1-3-算法描述"><a href="#5-1-3-算法描述" class="headerlink" title="5.1.3 算法描述"></a>5.1.3 算法描述</h4><p>​	①加密算法<br>$$<br>C=IP^{-1}(f_{k_2}(SW)(f_{k_1}(IP(P))))<br>$$<br>​	②解密算法<br>$$<br>P=IP^{-1}(f_{k_1}(SW(f_{k_2})(IP(C))))<br>$$<br>​	③密钥扩展<br>$$<br>k_i=P_8(Shift^i(P_{10}(K))),(i=1,2)<br>$$</p>
+<h4 id="5-1-4-转换装置设定"><a href="#5-1-4-转换装置设定" class="headerlink" title="5.1.4 转换装置设定"></a>5.1.4 转换装置设定</h4><p>​	①密钥扩展装置</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img44.png" class="" title="img44">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img46.png" class="" title="img46">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img47.png" class="" title="img47">
+
+
+
+<p>​	②初始置换盒</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img48.png" class="" title="img48">
+
+
+
+<p>​	③最终置换盒</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img49.png" class="" title="img49">
+
+
+
+<p>​	④轮函数</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img50.png" class="" title="img50">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img51.png" class="" title="img51">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img52.png" class="" title="img52">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img53.png" class="" title="img53">
+
+
+
+<h3 id="5-2-界面设计"><a href="#5-2-界面设计" class="headerlink" title="5.2 界面设计"></a>5.2 界面设计</h3><h4 id="5-2-1-加解密用户交互界面"><a href="#5-2-1-加解密用户交互界面" class="headerlink" title="5.2.1 加解密用户交互界面"></a>5.2.1 加解密用户交互界面</h4><p>​	①该XML文件定义了一个名为<code>AnchorPane</code>的JavaFX布局，用于包含用户界面元素；</p>
+<p>​	②用户界面包括两个按钮（加密和解密按钮）、四个文本框（用于输入原文、密文、密钥和输出结果）、两个标签（用于标识各个输入框的用途）、一个复选框（用于指示输入是否为ASCII字符）以及一个分隔线和一个结果标签；</p>
+<p>​	③每个用户界面元素都有相应的属性，例如<code>fx:id</code>用于在Java代码中引用该元素，<code>layoutX</code>和<code>layoutY</code>用于指定元素的位置，<code>prefHeight</code>和<code>prefWidth</code>用于设置元素的首选高度和宽度，<code>onAction</code>用于指定按钮点击时执行的操作，<code>text</code>用于设置按钮和标签的文本，<code>style</code>用于设置文本框的样式等；</p>
+<p>​	④该用户界面的主要功能是允许用户输入原文、密文和密钥，然后执行加密或解密操作，并在结果文本框中显示结果；</p>
+<p>​	⑤用户还可以选择复选框来指示输入是否为ASCII字符，并可以通过点击“随机生成密钥”按钮来生成随机密钥；</p>
+<p>​	⑥用户界面的设计旨在简化S-DES算法的使用，使用户可以轻松进行加密和解密操作。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="token prolog">&lt;?import java.lang.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.control.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.layout.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.text.*?&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>357.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>621.0<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/8<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>desController<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>166.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>284.0<span class="token punctuation">"</span></span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#Encode<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>59.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>加密<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>429.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>284.0<span class="token punctuation">"</span></span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#Decode<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>59.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>解密<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>encodeSou<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>106.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>106.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>decodeSou<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>364.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>106.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>59.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>109.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>原文：<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>311.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>109.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>密文：<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>59.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>229.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>密文：<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>311.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>229.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>原文：<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>keyField<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>217.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>27.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>175.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>密钥：<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>439.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>27.0<span class="token punctuation">"</span></span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#randomKey<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>随机生成密钥<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CheckBox</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkBox<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>136.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>输入ASCII字符<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CheckBox</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>encodeRes<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>106.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>226.0<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">-fx-background-color</span><span class="token punctuation">:</span> #d3d3d3<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>decodeRes<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>364.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>226.0<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">-fx-background-color</span><span class="token punctuation">:</span> #d3d3d3<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Separator</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>177.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>622.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>156.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>结果<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">&gt;</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="5-2-1-暴力破解用户交互界面"><a href="#5-2-1-暴力破解用户交互界面" class="headerlink" title="5.2.1 暴力破解用户交互界面"></a>5.2.1 暴力破解用户交互界面</h4><p>​	①代码起始部分包括XML声明，用于标识XML版本和编码方式;</p>
+<p>​	②在FXML文件中导入了一些JavaFX和Java的类和包，以便在FXML中使用这些类;</p>
+<p>​	③<code>&lt;AnchorPane&gt;</code>标签用于定义一个JavaFX用户界面的布局容器，具有指定的首选高度和宽度;</p>
+<p>​	④在<code>&lt;AnchorPane&gt;</code>标签内部，定义了多个用户界面元素，包括按钮、文本字段、标签和文本区域;</p>
+<p>​	⑤<code>&lt;Button&gt;</code>标签定义了一个按钮，具有以下属性和设置：</p>
+<p>​		a)<code>layoutX</code> 和 <code>layoutY</code> 属性定义按钮在用户界面中的位置;</p>
+<p>​		b)<code>onAction</code> 属性指定了按钮被点击时调用的事件处理方法，即 <code>#violentDecode</code> 方法;</p>
+<p>​		c)<code>text</code> 属性设置按钮上显示的文本为 “暴力解密”;</p>
+<p>​	⑥<code>&lt;TextField&gt;</code>标签定义了两个文本字段，分别用于输入原文和密文，具有指定的 <code>fx:id</code>、位置和字体设置;</p>
+<p>​	⑦<code>&lt;Label&gt;</code>标签定义了三个标签，用于标识不同文本字段的用途，分别是原文、密文和密钥的标签;</p>
+<p>​	⑧<code>&lt;TextArea&gt;</code>标签定义了一个文本区域，用于输入密钥，具有指定的 <code>fx:id</code>、位置和字体设置。</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="token prolog">&lt;?import javafx.scene.text.*?&gt;</span>
+<span class="token prolog">&lt;?import java.lang.*?&gt;</span>
+<span class="token prolog">&lt;?import java.util.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.control.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.layout.*?&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>515.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>601.0<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/8<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>violentController<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>260.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>225.0<span class="token punctuation">"</span></span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#violentDecode<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>80.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>暴力解密<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>originalText<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>206.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>84.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>secretText<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>206.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>160.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextField</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>162.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>87.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>44.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>原文<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>162.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>163.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>44.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>密文<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>162.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>358.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>23.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>44.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>密钥<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextArea</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>keyArea<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>201.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>269.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TextArea</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">&gt;</span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="6-使用说明"><a href="#6-使用说明" class="headerlink" title="6. 使用说明"></a>6. 使用说明</h2><h3 id="6-1-安装与初始化"><a href="#6-1-安装与初始化" class="headerlink" title="6.1 安装与初始化"></a>6.1 安装与初始化</h3><h4 id="6-1-1-安装Java-JDK"><a href="#6-1-1-安装Java-JDK" class="headerlink" title="6.1.1 安装Java JDK"></a>6.1.1 安装Java JDK</h4><ul>
+<li>如果您的计算机上没有安装Java JDK，请先下载并安装适用于您操作系统的Java JDK。您可以从Oracle官方网站（<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html%EF%BC%89%E6%88%96%E5%85%B6%E4%BB%96%E5%8F%AF%E4%BF%A1%E6%9D%A5%E6%BA%90%E8%8E%B7%E5%8F%96Java">https://www.oracle.com/java/technologies/javase-downloads.html）或其他可信来源获取Java</a> JDK的安装程序；</li>
+<li>安装Java JDK时，请按照安装向导的步骤进行操作。完成后，您将具备Java运行环境。</li>
+</ul>
+<h4 id="6-1-2-编译运行S-DES程序"><a href="#6-1-2-编译运行S-DES程序" class="headerlink" title="6.1.2 编译运行S-DES程序"></a>6.1.2 编译运行S-DES程序</h4><ul>
+<li>推荐下载JetBrains IntelliJ IDEA（通常简称为IDEA），一款由JetBrains公司开发的强大的集成开发环境（IDE），专门用于Java开发，提供了丰富的功能、高度的可定制性和出色的性能；</li>
+<li>选择src/main/java/mainApp.java点击运行即可。</li>
+</ul>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img30.jpg" class="" title="img30">
+
+
+
+<h4 id="6-1-3-版本控制"><a href="#6-1-3-版本控制" class="headerlink" title="6.1.3 版本控制"></a>6.1.3 版本控制</h4><ul>
+<li>推荐使用Git进行版本控制；</li>
+<li>每次更新需要撰写日志。</li>
+</ul>
+<h3 id="6-2-用户交互界面"><a href="#6-2-用户交互界面" class="headerlink" title="6.2 用户交互界面"></a>6.2 用户交互界面</h3><p>​	①通过勾选左上角的“输入ASCⅡ字符”可以调整输入原文/密文的格式；</p>
+<p>​	②界面左半部分是输入原文进行加密得到密文，右半部分是输入密文进行解密得到原文；</p>
+<p>​	③“结果”处的密文框和原文框无法直接进行编辑，只能输出展示“加密”和“解密”的结果；</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img1.png" class="" title="img1">
+
+
+
+<h3 id="6-3-输入"><a href="#6-3-输入" class="headerlink" title="6.3 输入"></a>6.3 输入</h3><h4 id="6-3-1-输入格式"><a href="#6-3-1-输入格式" class="headerlink" title="6.3.1 输入格式"></a>6.3.1 输入格式</h4><p>​	输入参数为8bit二进制数或者ASCⅡ编码(分组为1byte)的字符串、10bit密钥(也可以由本系统随机生成)；</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img1.png" class="" title="img1">
+
+<p>​	注：界面左上角的“输入ASCⅡ字符”勾选表示输入原文为ASCⅡ编码的字符串，不勾选表示输入为8bit二进制数。</p>
+<h4 id="6-3-2-输入样例"><a href="#6-3-2-输入样例" class="headerlink" title="6.3.2 输入样例"></a>6.3.2 输入样例</h4><p>​	① 密钥：1111001010</p>
+<p>​	     原文：10101010</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img31.png" class="" title="img31">
+
+
+
+<p>​	② 密钥：1000110000</p>
+<p>​	     原文：Andrade</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img33.png" class="" title="img33">
+
+
+
+<p>​	③ 密钥：0011111000</p>
+<p>​	     密文：10101010</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img37.png" class="" title="img37">
+
+
+
+<p>​	④ 密钥：1000110000</p>
+<p>​	     密文：&gt;ëVÓ</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img36.png" class="" title="img36">
+
+
+
+<h3 id="6-4-输出"><a href="#6-4-输出" class="headerlink" title="6.4 输出"></a>6.4 输出</h3><h4 id="6-4-1-输出格式"><a href="#6-4-1-输出格式" class="headerlink" title="6.4.1 输出格式"></a>6.4.1 输出格式</h4><p>​	输出为8bit二进制数（输入为8bit二进制数时）或ASCⅡ编码字符串（输入为ASCⅡ编码字符串时）。</p>
+<h4 id="6-4-2-输出样例"><a href="#6-4-2-输出样例" class="headerlink" title="6.4.2 输出样例"></a>6.4.2 输出样例</h4><p>​	① 密钥：1111001010</p>
+<p>​	     原文：10101010</p>
+<p>​	     密文：01001001</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img32.jpg" class="" title="img32">
+
+
+
+<p>​	② 密钥：1000110000</p>
+<p>​	     原文：Andrade</p>
+<p>​	     密文：&gt;ëVÓ</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img34.jpg" class="" title="img34">
+
+
+
+<p>​	③ 密钥：0011111000</p>
+<p>​	     密文：10101010</p>
+<p>​	     原文：10111110</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img38.png" class="" title="img38">
+
+
+
+<p>​	④ 密钥：1000110000</p>
+<p>​	     密文：&gt;ëVÓ</p>
+<p>​	     原文：Andrade</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img35.jpg" class="" title="img35">
+
+
+
+<h2 id="7-测试与验证"><a href="#7-测试与验证" class="headerlink" title="7. 测试与验证"></a>7. 测试与验证</h2><h3 id="7-1-加密解密测试"><a href="#7-1-加密解密测试" class="headerlink" title="7.1 加密解密测试"></a>7.1 加密解密测试</h3><p>​	本系统提供纯二进制加密解密功能及ASCⅡ编码字符串加密解密功能，在用户交互界面左上角可以选择，不勾选表示使用纯二进制数字进行加密解密，勾选表示使用ASCⅡ编码字符串进行加密解密。</p>
+<h4 id="7-1-1-二进制加密测试"><a href="#7-1-1-二进制加密测试" class="headerlink" title="7.1.1 二进制加密测试"></a>7.1.1 二进制加密测试</h4><p>​		随机生成密钥：1011001011</p>
+<p>​		原文：10101010</p>
+<p>​		求得密文：11101000</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img5.jpg" class="" title="img5">
+
+
+
+<h4 id="7-1-2-二进制解密测试"><a href="#7-1-2-二进制解密测试" class="headerlink" title="7.1.2 二进制解密测试"></a>7.1.2 二进制解密测试</h4><p>​		沿用之前密钥：1011001011</p>
+<p>​		密文：11101000</p>
+<p>​		解得原文：10101010</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img6.jpg" class="" title="img6">
+
+
+
+<h4 id="7-1-3-ASCⅡ编码字符串加密测试"><a href="#7-1-3-ASCⅡ编码字符串加密测试" class="headerlink" title="7.1.3 ASCⅡ编码字符串加密测试"></a>7.1.3 ASCⅡ编码字符串加密测试</h4><p>​		密钥：0111001000</p>
+<p>​		原文：Andrade</p>
+<p>​		求得密文：µH%%X</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img17.jpg" class="" title="img17">
+
+
+
+<h4 id="7-1-4-ASCⅡ编码字符串解密测试"><a href="#7-1-4-ASCⅡ编码字符串解密测试" class="headerlink" title="7.1.4 ASCⅡ编码字符串解密测试"></a>7.1.4 ASCⅡ编码字符串解密测试</h4><p>​		密钥：0111001000</p>
+<p>​		密文：µH%%X</p>
+<p>​		解得原文：Andrade</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img18.jpg" class="" title="img18">
+
+
+
+<h4 id="7-1-5-异常处理"><a href="#7-1-5-异常处理" class="headerlink" title="7.1.5 异常处理"></a>7.1.5 异常处理</h4><p>​		①当输入原文或密钥不符合规范时；</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img4.jpg" class="" title="img4">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img7.jpg" class="" title="img7">
+
+
+
+<p>​		②输入为ASCⅡ编码字符串，但没有勾选相应选项；</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img43.jpg" class="" title="img43">
+
+
+
+<h3 id="7-2-破解测试"><a href="#7-2-破解测试" class="headerlink" title="7.2 破解测试"></a>7.2 破解测试</h3><h4 id="7-2-1-单线程破解"><a href="#7-2-1-单线程破解" class="headerlink" title="7.2.1 单线程破解"></a>7.2.1 单线程破解</h4><p>​		破解所得可能的密钥：</p>
+<p>​		①0011010110；</p>
+<p>​		②0111010110；</p>
+<p>​		③1000000000；</p>
+<p>​		④1001001100；</p>
+<p>​		⑤1100000010；</p>
+<p>​		⑥1101001100。</p>
+<p>​	</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img20.jpg" class="" title="img20">
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img21.jpg" class="" title="img21">
+
+
+
+<h4 id="7-2-2-双线程破解"><a href="#7-2-2-双线程破解" class="headerlink" title="7.2.2 双线程破解"></a>7.2.2 双线程破解</h4><p>​		破解所得可能的密钥：</p>
+<p>​		①1000000000；</p>
+<p>​		②1001001100；</p>
+<p>​		③1100000010；</p>
+<p>​		④1101001100；</p>
+<p>​		⑤0011010110；</p>
+<p>​		⑥0111010110；</p>
+<p>​		与单线程破解结果相同。</p>
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img23.jpg" class="" title="img23">
+
+
+
+<img src="/2023/10/30/s-des-kai-fa-shou-ce/img22.jpg" class="" title="img22">
+
+
+
+<h2 id="8-常见问题与故障排除"><a href="#8-常见问题与故障排除" class="headerlink" title="8. 常见问题与故障排除"></a>8. 常见问题与故障排除</h2><h3 id="8-1-问题1：程序无法启动或崩溃"><a href="#8-1-问题1：程序无法启动或崩溃" class="headerlink" title="8.1 问题1：程序无法启动或崩溃"></a>8.1 问题1：程序无法启动或崩溃</h3><ul>
+<li>排除方法：<ul>
+<li>确保已安装所需的Java JDK并正确配置了JAVA_HOME环境变量；</li>
+<li>检查程序的依赖项，确保所有必需的库和文件都位于正确的位置；</li>
+<li>检查程序的日志文件或控制台输出，以查看是否有错误消息，根据错误消息进行进一步的排除。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2-问题2：加密或解密操作失败"><a href="#8-2-问题2：加密或解密操作失败" class="headerlink" title="8.2 问题2：加密或解密操作失败"></a>8.2 问题2：加密或解密操作失败</h3><ul>
+<li>排除方法：<ul>
+<li>检查输入数据和密钥的格式，确保它们符合程序的要求；</li>
+<li>验证密钥生成过程，确保生成的密钥正确；</li>
+<li>检查加密或解密算法的实现，确保它遵循S-DES算法规范；</li>
+<li>如果可能，尝试使用其他输入数据和密钥进行测试，以确定问题是否特定于某个数据集。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-3-问题3：程序性能不佳或响应时间过长"><a href="#8-3-问题3：程序性能不佳或响应时间过长" class="headerlink" title="8.3 问题3：程序性能不佳或响应时间过长"></a>8.3 问题3：程序性能不佳或响应时间过长</h3><ul>
+<li>排除方法：<ul>
+<li>检查计算密集型操作，如数据加密或解密，是否有优化的机会，例如使用更高效的算法或数据结构；</li>
+<li>确保程序没有内存泄漏问题，通过检查内存使用情况来排除此类问题；</li>
+<li>考虑并发处理，使用多线程来提高性能，特别是在大规模数据处理时。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-4-问题4：用户界面问题"><a href="#8-4-问题4：用户界面问题" class="headerlink" title="8.4 问题4：用户界面问题"></a>8.4 问题4：用户界面问题</h3><ul>
+<li>排除方法：<ul>
+<li>检查用户界面元素的布局和设计，确保它们易于理解和使用；</li>
+<li>确保用户界面在不同操作系统和分辨率下都能正常工作；</li>
+<li>收集用户反馈，并根据反馈来改进用户界面和用户体验。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-5-问题5：安全性问题"><a href="#8-5-问题5：安全性问题" class="headerlink" title="8.5 问题5：安全性问题"></a>8.5 问题5：安全性问题</h3><ul>
+<li>排除方法：<ul>
+<li>定期更新程序以修复已知的安全漏洞；</li>
+<li>使用密码学库和工具来确保数据的机密性和完整性；</li>
+<li>进行安全审查，以识别潜在的安全问题并采取措施加以解决。</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-维护与更新"><a href="#9-维护与更新" class="headerlink" title="9. 维护与更新"></a>9. 维护与更新</h2><h3 id="9-1-更新计划"><a href="#9-1-更新计划" class="headerlink" title="9.1 更新计划"></a>9.1 更新计划</h3><p>​	①未来计划支持网上加密服务，无需本地部署，远程即可体验我们开发的S-DES加密系统；</p>
+<p>​	②未来计划更新汉字加密服务，方便中文用户进行使用；</p>
+<p>​	③未来计划支持更灵活位数原文的加密，提高用户体验；</p>
+<p>​	④……</p>
+<h3 id="9-2-联系方式"><a href="#9-2-联系方式" class="headerlink" title="9.2 联系方式"></a>9.2 联系方式</h3><p>​	有任何建议欢迎联系我们的工作邮箱：<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a>，届时请说明来意，谢谢！</p>
+<h2 id="10-附录"><a href="#10-附录" class="headerlink" title="10. 附录"></a>10. 附录</h2><h3 id="10-1-术语表"><a href="#10-1-术语表" class="headerlink" title="10.1 术语表"></a>10.1 术语表</h3><p>​	①DES：全称为Data Encryption Standard（数据加密标准），是一种对称密钥加密算法。它于1977年由美国国家标准与技术研究所（NIST）发布，并被美国政府采用作为非机密数据的加密标准。DES的主要设计目标是提供一种高度安全的数据加密机制，以保护敏感数据免受未经授权的访问和窃取；</p>
+<p>​	②S-DES：全称为Simplified Data Encryption Standard（简化版数据加密标准），是一个基于DES算法的简化版本，旨在提供更快的执行速度和更简单的实现。DES是一种广泛使用的对称密钥加密算法，但它的密钥长度较长，复杂度较高，因此，S-DES被创建为一种教育和理解加密算法原理的工具；</p>
+<p>​	③P-Box：全称为Permutation Box（置换盒），是在密码学中经常用于加密和解密过程中的一种置换操作。P-Box用于重新排列输入数据的位，以创建输出数据。它的主要目的是增加密码算法的复杂性，提高安全性，以及打乱输入数据的分布，使密码更难以破解；</p>
+<p>​	④S-Box：全称为Substitution Box（替代置换盒），是在密码学中常见的一种非线性变换，用于加密和解密过程中的数据转换。S-Box的主要作用是将输入数据的一部分映射到输出数据，通常用于替代明文中的位，以增加密码算法的混淆性和安全性；</p>
+<p>​	⑤IP：全称为Initial Permutation（初始置换），是在密码学中用于数据加密的一种置换操作。它通常用于对明文数据进行初始置换，以改变数据的排列顺序和分布，从而增加密码算法的安全性；</p>
+<p>​	⑥SP-Box：全称为Substitution-Permutation Box，是在密码学中常见的一种组合置换操作，通常用于分组密码（block cipher）的加密和解密算法中。SP-Box包括两部分，即替代（Substitution）和置换（Permutation），它的主要目的是对输入数据块进行非线性替代和线性置换，以增加密码算法的复杂性和安全性；</p>
+<p>​	⑦SW：全称为Swap，是一种基本的计算机编程操作，用于交换两个变量的值或交换数据结构中两个元素的位置。SW操作通常用于改变变量或数据结构的状态，以便实现特定的算法或逻辑。SW操作是计算机科学中的一种常见操作，通常用于排序算法、数据交换和优化等领域。</p>
+<h3 id="10-2-参考资料"><a href="#10-2-参考资料" class="headerlink" title="10.2 参考资料"></a>10.2 参考资料</h3><p>​	① Haibo,Hu.(2023).作业一：S-DES算法实现与GUI.shimo.<a target="_blank" rel="noopener" href="https://shimo.im/docs/m5kvdlMaKvcENy3X/read">作业1：S-DES算法实现 (shimo.im)</a>;</p>
+<p>​	② Schneier, B. (1996). Applied Cryptography: Protocols, Algorithms, and Source Code in C. Wiley.</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>​	在这份S-DES算法实现的开发手册中，我们提供了详细的信息和指南，旨在帮助您了解、安装、配置和使用S-DES算法实现程序。S-DES算法是信息安全领域中的经典加密算法之一，通过本程序，您可以更好地理解它的工作原理和应用；</p>
+<p>​	我们的目标是使这份手册成为一个有用的资源，无论您是一名开发者还是一名用户。无论您是在学术研究中使用S-DES算法，还是在实际应用中保护数据的安全性，我们希望这份手册能够满足您的需求；</p>
+<p>​	我们鼓励您在使用S-DES算法实现程序时，按照手册中的指南进行操作，并随时查阅手册以解决可能出现的问题。如果您有任何反馈、建议或疑问，请随时联系我们(<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a>)，我们将尽力提供支持和帮助；</p>
+<p>​	最后，感谢您选择使用S-DES算法实现程序。我们希望它能够满足您的加密需求，并为您的项目和研究提供有价值的支持。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Seal</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://SealParadise.github.io/2023/10/30/s-des-kai-fa-shou-ce/">http://SealParadise.github.io/2023/10/30/s-des-kai-fa-shou-ce/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Seal</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                                    <span class="chip bg-color">信息安全导论</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                                    <span class="chip bg-color">大三上</span>
+                                </a>
+                            
+                                <a href="/tags/S-DES/">
+                                    <span class="chip bg-color">S-DES</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                                    <span class="chip bg-color">开发手册</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">双腿交替向前，总会抵达终点</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/10/30/s-des-yong-hu-zhi-nan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="S-DES用户指南">
+                        
+                        <span class="card-title">S-DES用户指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            欢迎使用S-DES加解密程序用户指南。本指南将向您介绍如何使用Java语言编写的S-DES（Simplified Data Encryption Standard）加解密程序。这个程序是基于"信息安全导论"课程中第5次课程所讲述的S-DES算法开发而成，旨在帮助您加密和解密数据，以保护您的信息安全。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                    大三上
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                        <span class="chip bg-color">信息安全导论</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">
+                        <span class="chip bg-color">用户指南</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                        <span class="chip bg-color">大三上</span>
+                    </a>
+                    
+                    <a href="/tags/S-DES/">
+                        <span class="chip bg-color">S-DES</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/10/30/xin-xi-an-quan-dao-lun-s-des-zuo-ye/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="信息安全导论S-DES作业">
+                        
+                        <span class="card-title">信息安全导论S-DES作业</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            根据"信息安全导论"课程第5次课讲述的S-DES算法，使用你们自己最擅长的程序语言(C++/QT或Java+Swing、Python+QT等)来编程实现加、解密程序。本文为Andrade小组的S-DES算法实现报告。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                    大三上
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                        <span class="chip bg-color">信息安全导论</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                        <span class="chip bg-color">大三上</span>
+                    </a>
+                    
+                    <a href="/tags/S-DES/">
+                        <span class="chip bg-color">S-DES</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/">
+                        <span class="chip bg-color">测试报告</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">Seal</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">50k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SealParadise" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:916662613@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=916662613" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 916662613" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/fei-xia-bu-hui-fei-50" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/fei-xia-bu-hui-fei-50" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

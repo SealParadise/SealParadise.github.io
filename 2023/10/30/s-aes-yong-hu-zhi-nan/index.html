@@ -1,0 +1,1867 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="S-AES用户指南, SealParadise">
+    <meta name="description" content="本指南将向您介绍如何使用Java语言编写的S-AES（Simplified Advanced Encryption Standard）加解密程序。这个程序是基于&#34;信息安全导论&#34;课程中第7~9次课程所讲述的S-AES算法、多重加密原理及分组加密模式开发而成，旨在帮助您加密和解密数据，以保护您的信息安全。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>S-AES用户指南 | SealParadise</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="SealParadise" type="application/atom+xml">
+</head>
+
+
+
+<body>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">SealParadise</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">SealParadise</div>
+        <div class="logo-desc">
+            
+            山中何事？ 松花酿酒，春水煎茶。
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/SealParadise/SealParadise.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/SealParadise/SealParadise.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/32.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">S-AES用户指南</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                                <span class="chip bg-color">信息安全导论</span>
+                            </a>
+                        
+                            <a href="/tags/S-AES/">
+                                <span class="chip bg-color">S-AES</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">
+                                <span class="chip bg-color">用户指南</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                                <span class="chip bg-color">大三上</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                大三上
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-10-30
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    22 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Andrade-S-AES-用户指南"><a href="#Andrade-S-AES-用户指南" class="headerlink" title="Andrade S-AES 用户指南"></a>Andrade S-AES 用户指南</h1><p>开发人员：徐涵浩 明子鸿</p>
+<p>指南撰写人员：明子鸿 徐涵浩</p>
+<p>单位：重庆大学大数据与软件学院</p>
+<p>联系方式：<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a></p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h2><h3 id="1-1-编写目的"><a href="#1-1-编写目的" class="headerlink" title="1.1 编写目的"></a>1.1 编写目的</h3><p>​	欢迎使用S-AES加解密程序用户指南。本指南将向您介绍如何使用Java语言编写的S-AES（Simplified Advanced Encryption Standard）加解密程序。这个程序是基于”信息安全导论”课程中第7~9次课程所讲述的S-AES算法、多重加密原理及分组加密模式开发而成，旨在帮助您加密和解密数据，以保护您的信息安全。</p>
+<p>​	AES是一种广泛使用的对称密钥加密算法，用于保护数据的机密性，其安全性已经经过广泛验证和认可。而S-AES是一种轻量级的加密算法，是对AES的简化版本，通常以16位（2字节）的分组大小工作，其密钥扩展较为简单，密钥长度和轮数相对较少，旨在在资源受限的环境中提供基本的加密功能，通常用于嵌入式系统、传感器网络和物联网等领域，其中计算和存储资源有限。通过本程序，您可以学习和实践S-AES算法、多重加密及分组加密工作模式的基本原理，并将其应用于实际数据加密和解密任务中。</p>
+<p>​	在本用户指南中，您将找到以下内容：</p>
+<p>​	<strong>① 程序安装与配置</strong>：了解如何下载、安装和配置S-AES加解密程序；</p>
+<p>​	<strong>② 基本用法</strong>：学习如何使用程序进行数据加密和解密，包括输入明文、选择密钥、查看加密结果等，数据格式可以是二进制数、ASCⅡ编码字符串以及中文字符；</p>
+<p>​	<strong>③ 高级选项</strong>：深入了解S-AES算法的不同参数和选项，以满足不同的加密需求，如使用多重加密、分组加密工作模式进行加解密，还可以体验中间相遇攻击的实际运用；</p>
+<p>​	<strong>④ 实例演示</strong>：通过示例演示来展示程序的实际运行，以帮助您更好地理解S-AES加解密和利用多重加密、分组加密工作模式实际工作的过程；</p>
+<p>​	<strong>⑤ 错误排除和问题解决</strong>：提供用户使用过程中可能遇到的常见问题的解答部分，以帮助用户解决可能出现的常见问题和错误，这将提高用户在使用本程序时的自信心和效率。</p>
+<p>​	无论您是信息安全领域的学生、专业人士还是对加密算法感兴趣的任何人，本用户指南将为您提供宝贵的资源，帮助您掌握S-AES算法并将其应用于实际场景。让我们一起开始吧，保障您的数据安全！</p>
+<h3 id="1-2-项目背景"><a href="#1-2-项目背景" class="headerlink" title="1.2 项目背景"></a>1.2 项目背景</h3><h4 id="1-2-1-项目来源"><a href="#1-2-1-项目来源" class="headerlink" title="1.2.1 项目来源"></a>1.2.1 项目来源</h4><p>​	S-AES是一个基于AES（Advanced Encryption Standard）算法的简化版本，旨在提供更快的执行速度和更简单的实现。AES是一种广泛使用的对称密钥加密算法，但它的密钥长度较长，复杂度较高。因此，密钥扩展较为简单、密钥长度和轮数相对较少的S-AES算法被创建出来，作为一种教育和理解加密算法原理的工具。</p>
+<p>​	在”信息安全导论”课程中，S-AES被用来教授学生加密算法的基本概念，其允许学生实际操作，演示加密和解密的过程，这有助于学生更好地理解加密算法的实际应用，理解密钥管理、数据保护和数据完整性等基本概念，以及如何使用算法来保护敏感信息。这个程序是基于”信息安全导论”课程中第7~9次课程所讲述的S-AES算法、多重加密原理及分组加密模式开发而成，目的是帮助学生理解加密算法的基本原理，同时提供了实际应用和研究的机会，有助于培养信息安全领域的专业技能和知识。</p>
+<h4 id="1-2-2-开发单位"><a href="#1-2-2-开发单位" class="headerlink" title="1.2.2 开发单位"></a>1.2.2 开发单位</h4><p>​	重庆大学大数据与软件学院。</p>
+<h4 id="1-2-3-主管部门"><a href="#1-2-3-主管部门" class="headerlink" title="1.2.3 主管部门"></a>1.2.3 主管部门</h4><p>​	重庆大学大数据与软件学院2021级软件工程03班竹园五栋513。</p>
+<h3 id="1-3-定义"><a href="#1-3-定义" class="headerlink" title="1.3 定义"></a>1.3 定义</h3><p>​	① AES：全称为 Advanced Encryption Standard（高级加密标准），用于对称密钥加密。它是一种对称密钥加密算法，意味着相同的密钥用于加密和解密数据。AES是一种广泛使用的加密算法，旨在保护数据的机密性，同时提供高度的安全性和性能；</p>
+<p>​	② S-AES：全称为Simplified Advanced Encryption Standard（简化版高级加密标准），是一个基于AES算法的简化版本，旨在提供更快的执行速度和更简单的实现。AES是一种对称密钥加密算法，被广泛用于数据加密，但有时对于资源受限的环境，如嵌入式系统、传感器网络、物联网设备等，标准的AES可能太复杂，因此，S-AES作为一种轻量级的加密算法，旨在提供更为简单、更节省资源的加密解决方案。在本次实验中，被应用为一种教育和理解加密算法原理的工具；</p>
+<p>​	③ NS：全称为Nibble Substitution（半字节替代），是一种密码学中的数据替代操作。在密码学中，”半字节”通常指的是4位二进制数字（也就是半字节等于4比特），而”替代”则意味着将这些4位数字替换为另一组4位数字，从而进行加密或混淆操作；</p>
+<p>​	④ A<sub>K</sub>：全称为Key Addition（密钥加），是在对称密钥加密算法中的一种基本操作。这个操作也被称为”轮密钥加”，它在加密和解密的每个加密轮中都会被执行。密钥加操作通常用于将轮密钥（Round Key）与明文数据进行逐比特或逐字节的按位异或运算，以混淆明文数据和密钥；</p>
+<p>​	⑤ SR：全称为Shift Row（行位移），是AES加密算法中的一个基本步骤，用于对AES数据块内的字节进行行位移操作。SR操作在AES的加密和解密过程中都会被执行，以增加密码的安全性；</p>
+<p>​	⑥ MC：全称为Mix Columns（列混淆），是AES加密算法中的一个重要步骤。MC操作是AES的加密和解密过程中的核心组成部分之一，用于改变AES数据块中列内字节的排列，以增加密码的安全性和混淆性；</p>
+<p>​	⑦ S盒：全称为Substitution Box（替代盒），是一种用于字节替代的非线性变换，主要功能是将输入的8位字节替换为输出的8位字节。这种替代是非线性的，意味着输入字节的每个位（比特）对输出字节的每个位都有影响。S-盒的设计是为了增加加密算法的混淆性，以使密码更难以破解。S-盒在AES加密和解密的过程中都会被广泛使用，以增加密码的安全性；</p>
+<p>​	⑧ IV：全称为Initialization Vector（初始向量），是在使用密码分组链模式时的一个重要参数；</p>
+<p>​	⑨CBC：全称为Cipher Block Chaining（密码分组链模式），是一种在密码学中常用的分组密码工作模式。它被用于对较长的消息或数据进行加密，并提供了一些重要的安全性特性。CBC 工作模式在多种加密算法中都有应用，包括 AES和 DES（Data Encryption Standard）等。</p>
+<h3 id="1-4-参考文献"><a href="#1-4-参考文献" class="headerlink" title="1.4 参考文献"></a>1.4 参考文献</h3><p>​	① qq_32444825.2018-03-01.软件用户手册（软件使用说明书）模板.CSDN博客；</p>
+<p>​	② <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32444825/article/details/79412969">软件用户手册（软件使用说明书）模板-CSDN博客</a>；</p>
+<p>​	③ Hu, Haibo. (2023) .作业2：S-AES算法实现. shimo. <a target="_blank" rel="noopener" href="https://shimo.im/docs/zm1FlCxE3eYCQSSo/read">作业2：S-AES算法实现 (shimo.im)</a>;</p>
+<p>​	④ Daemen, J., &amp; Rijmen, V. (2002). The Design of Rijndael: AES - The Advanced Encryption Standard. Springer;</p>
+<p>​	⑤ Stallings, W. (2021). Cryptography and Network Security Principles and Practice, Eighth Edition. Publishing House of Electronics Industry.</p>
+<h2 id="2-软件概述"><a href="#2-软件概述" class="headerlink" title="2 软件概述"></a>2 软件概述</h2><h3 id="2-1-目标"><a href="#2-1-目标" class="headerlink" title="2.1 目标"></a>2.1 目标</h3><p>​	S-AES（Simplified Advanced Encryption Standard）算法实现程序的主要目的是提供一种简化的数据加密和解密方法，旨在教育和理解经典的AES算法的基本原理。S-AES是AES算法的一个简化版本，用于教育和学习密码学的目的，因此其主要目标是教育和演示而不是实际的安全性。以下是S-AES算法实现程序的主要目的：</p>
+<p>​	① <strong>教育和学习：</strong> S-AES软件的主要目的是提供一种简化的AES算法的实现，旨在教育和帮助学生、研究人员和密码学爱好者理解对称密钥加密算法的基本原理。通过编写、调试和运行S-AES程序，用户可以深入了解AES算法的工作方式，包括轮函数、替代盒、行位移、列混淆等关键概念；</p>
+<p>​	② <strong>实验和练习：</strong> S-AES算法通常作为密码学教育的实验之一。学生可以通过使用S-AES程序进行实验和练习，加强他们的密码学理解和编程技能，以及加密算法的应用；</p>
+<p>​	③ <strong>原理演示：</strong> S-AES软件用于演示AES算法的核心原理，包括数据块的加密和解密流程。通过观察S-AES程序的运行，用户可以清楚地看到数据是如何在不同的加密轮中进行处理和变换的；</p>
+<p>​	④ <strong>算法测试：</strong> S-AES程序可以用于测试和验证其他程序或库中的AES实现。它可以用作参考，以确保其他程序的正确性，尤其是在教育和研究环境中进行算法比较和测试时；</p>
+<p>​	⑤ <strong>密码算法研究：</strong> 研究人员和密码学爱好者可以使用S-AES程序来进行密码算法的研究和实验，以改进和深入研究加密技术。这有助于推动密码学领域的进展和创新。</p>
+<p>​	需要注意的是，S-AES算法的安全性相对较低，不适合用于实际的数据加密应用。正规的数据加密应用通常使用更强大和安全的加密算法，如标准AES。然而，S-AES作为教育工具仍然是有价值的，用于帮助人们理解和学习加密算法的基本概念和原理。</p>
+<h2 id="3-运行环境"><a href="#3-运行环境" class="headerlink" title="3 运行环境"></a>3 运行环境</h2><h3 id="3-1-硬件（推荐环境）"><a href="#3-1-硬件（推荐环境）" class="headerlink" title="3.1 硬件（推荐环境）"></a>3.1 硬件（推荐环境）</h3><p>​	处理器：AMD Ryzen 7 5800H with Radeon Graphics</p>
+<p>​	显卡：NVIDIA GeForce RTX 3060 Laptop GPU</p>
+<p>​	内存：Samsung DDR4 3200MHz 32GB</p>
+<p>​	硬盘：Samsung SSD 980 1TB</p>
+<h3 id="3-2-软件（推荐环境）"><a href="#3-2-软件（推荐环境）" class="headerlink" title="3.2 软件（推荐环境）"></a>3.2 软件（推荐环境）</h3><p>​	操作系统：Windows 11</p>
+<p>​	集成开发环境：IntelliJ IDEA 2022.1.3</p>
+<p>​	Java开发工具包：JDK 1.8</p>
+<h2 id="4-使用说明"><a href="#4-使用说明" class="headerlink" title="4 使用说明"></a>4 使用说明</h2><h3 id="4-1-安装与初始化"><a href="#4-1-安装与初始化" class="headerlink" title="4.1 安装与初始化"></a>4.1 安装与初始化</h3><h4 id="4-1-1-安装Java-JDK"><a href="#4-1-1-安装Java-JDK" class="headerlink" title="4.1.1 安装Java JDK"></a>4.1.1 安装Java JDK</h4><ul>
+<li>如果您的计算机上没有安装Java JDK，请先下载并安装适用于您操作系统的Java JDK。您可以从Oracle官方网站（<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html%EF%BC%89%E6%88%96%E5%85%B6%E4%BB%96%E5%8F%AF%E4%BF%A1%E6%9D%A5%E6%BA%90%E8%8E%B7%E5%8F%96Java">https://www.oracle.com/java/technologies/javase-downloads.html）或其他可信来源获取Java</a> JDK的安装程序；</li>
+<li>安装Java JDK时，请按照安装向导的步骤进行操作。完成后，您将具备Java运行环境。</li>
+</ul>
+<h4 id="4-1-2-下载S-AES程序"><a href="#4-1-2-下载S-AES程序" class="headerlink" title="4.1.2 下载S-AES程序"></a>4.1.2 下载S-AES程序</h4><ul>
+<li>下载Andrade小组在GitHub仓库中托管的S-AES程序的源代码到本地。</li>
+</ul>
+<h4 id="4-1-3-编译或运行S-AES程序"><a href="#4-1-3-编译或运行S-AES程序" class="headerlink" title="4.1.3 编译或运行S-AES程序"></a>4.1.3 编译或运行S-AES程序</h4><ul>
+<li>推荐下载JetBrains IntelliJ IDEA（通常简称为IDEA），一款由JetBrains公司开发的强大的集成开发环境（IDE），专门用于Java开发，提供了丰富的功能、高度的可定制性和出色的性能；</li>
+<li>选择src/main/java/org.aes/Main.java点击运行即可。</li>
+</ul>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img62.png" class="" title="img62">
+
+
+
+<h3 id="4-2-输入"><a href="#4-2-输入" class="headerlink" title="4.2 输入"></a>4.2 输入</h3><h4 id="4-2-1-输入格式"><a href="#4-2-1-输入格式" class="headerlink" title="4.2.1 输入格式"></a>4.2.1 输入格式</h4><p>​	① 加密模块</p>
+<p>​		输入为16bit二进制数或ASCⅡ编码字符串（分组为2Bytes）、16bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img63.png" class="" title="img63">
+
+
+
+<p>​	② 解密模块</p>
+<p>​		输入为16bit二进制数或ASCⅡ编码字符串（分组为2Bytes）、16bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img64.png" class="" title="img64">
+
+
+
+<p>​	③ 中文模块</p>
+<p>​		输入为中文、16bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img65.png" class="" title="img65">
+
+
+
+<p>​	④ 双重加密模块</p>
+<p>​		输入为16bit二进制数、32bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img66.png" class="" title="img66">
+
+
+
+<p>​	⑤ 中间相遇攻击模块</p>
+<p>​		输入为16bit二进制明密文对；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img67.png" class="" title="img67">
+
+
+
+<p>​	⑥ 三重加密模块</p>
+<p>​		输入为16bit二进制数、32bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img68.png" class="" title="img68">
+
+
+
+<p>​	⑦ 分组加密模块</p>
+<p>​		输入为中文、16bit二进制初始向量、16bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img70.png" class="" title="img70">
+
+
+
+<h4 id="4-2-2-输入样例"><a href="#4-2-2-输入样例" class="headerlink" title="4.2.2 输入样例"></a>4.2.2 输入样例</h4><p>​	① 加密模块</p>
+<p>​		a. 明文为16bit二进制数</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img71.png" class="" title="img71">
+
+
+
+<p>​		b. 明文为ASCⅡ编码字符串</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：Andrade</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img72.png" class="" title="img72">
+
+
+
+<p>​	② 解密模块</p>
+<p>​		a. 密文为16bit二进制数</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：0100001110000001</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img73.png" class="" title="img73">
+
+
+
+<p>​		b. 密文为ASCⅡ编码字符串</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：Dc~Ôey[</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img74.png" class="" title="img74">
+
+
+
+<p>​	③ 中文模块</p>
+<p>​		a. 加密</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：原神启动</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img75.png" class="" title="img75">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：쨱愜셑넋</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img76.png" class="" title="img76">
+
+
+
+<p>​	④ 双重加密</p>
+<p>​		a. 加密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img78.png" class="" title="img78">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img79.png" class="" title="img79">
+
+
+
+<p>​	⑤ 中间相遇攻击</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img80.png" class="" title="img80">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img81.png" class="" title="img81">
+
+
+
+<p>​	⑥ 三重加密</p>
+<p>​		a. 加密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img85.png" class="" title="img85">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			密文：1001010101101111</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img84.png" class="" title="img84">
+
+
+
+<p>​	⑦ 分组加密</p>
+<p>​		a. 加密</p>
+<p>​			初始向量：1001011001001110</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：安德雷德</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img86.png" class="" title="img86">
+
+
+
+<p>​		b. 解密</p>
+<p>​			初始向量：1001011001001110</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：흖弹눈됼</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img87.png" class="" title="img87">
+
+
+
+<h3 id="4-3-输出"><a href="#4-3-输出" class="headerlink" title="4.3 输出"></a>4.3 输出</h3><h4 id="4-3-1-输出格式"><a href="#4-3-1-输出格式" class="headerlink" title="4.3.1 输出格式"></a>4.3.1 输出格式</h4><p>​	① 加密模块</p>
+<p>​		输出为16bit二进制数或ASCⅡ编码字符串（分组为2Bytes）密文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img88.png" class="" title="img88">
+
+
+
+<p>​	② 解密模块</p>
+<p>​		输出为16bit二进制数或ASCⅡ编码字符串（分组为2Bytes）明文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img89.png" class="" title="img89">
+
+
+
+<p>​	③ 中文模块</p>
+<p>​		输出为中文字符密文、明文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img90.png" class="" title="img90">
+
+
+
+<p>​	④ 双重加密模块</p>
+<p>​		输出为16bit二进制密文、明文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img91.png" class="" title="img91">
+
+
+
+<p>​	⑤ 中间相遇攻击模块</p>
+<p>​		输出为可能的32bit二进制密钥；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img92.png" class="" title="img92">
+
+
+
+<p>​	⑥ 三重加密模块</p>
+<p>​		输出为16bit二进制密文、明文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img93.png" class="" title="img93">
+
+
+
+<p>​	⑦ 分组加密模块</p>
+<p>​		输出为中文字符密文、明文；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img94.png" class="" title="img94">
+
+
+
+<h4 id="4-3-2-输出样例"><a href="#4-3-2-输出样例" class="headerlink" title="4.3.2 输出样例"></a>4.3.2 输出样例</h4><p>​	① 加密模块</p>
+<p>​		a. 明文为16bit二进制数</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<p>​			密文：0100001110000001</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img95.png" class="" title="img95">
+
+
+
+<p>​		b. 明文为ASCⅡ编码字符串</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：Andrade</p>
+<p>​			密文：Dc~Ôey[</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img96.png" class="" title="img96">
+
+
+
+<p>​	② 解密模块</p>
+<p>​		a. 密文为16bit二进制数</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：0100001110000001</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img97.png" class="" title="img97">
+
+
+
+<p>​		b. 密文为ASCⅡ编码字符串</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：Dc~Ôey[</p>
+<p>​			明文：Andrade</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img98.png" class="" title="img98">
+
+
+
+<p>​	③ 中文模块</p>
+<p>​		a. 加密</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：原神启动</p>
+<p>​			密文：쨱愜셑넋</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img99.png" class="" title="img99">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：쨱愜셑넋</p>
+<p>​			明文：原神启动</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img100.png" class="" title="img100">
+
+
+
+<p>​	④ 双重加密</p>
+<p>​		a. 加密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<p>​			密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img101.png" class="" title="img101">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			密文：1100000000000101</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img103.png" class="" title="img103">
+
+
+
+<p>​	⑤ 中间相遇攻击</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<p>​		可能的密钥：略</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img104.png" class="" title="img104">
+
+
+
+<p>​	⑥ 三重加密</p>
+<p>​		a. 加密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			明文：1100110011001100</p>
+<p>​			密文：1001010101101111</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img105.png" class="" title="img105">
+
+
+
+<p>​		b. 解密</p>
+<p>​			密钥：10101010101010101010101010101010</p>
+<p>​			密文：1001010101101111</p>
+<p>​			明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img106.png" class="" title="img106">
+
+
+
+<p>​	⑦ 分组加密</p>
+<p>​		a. 加密</p>
+<p>​			初始向量：1001011001001110</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			明文：安德雷德</p>
+<p>​			密文：흖弹눈됼</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img107.png" class="" title="img107">
+
+
+
+<p>​		b. 解密</p>
+<p>​			初始向量：1001011001001110</p>
+<p>​			密钥：1010101010101010</p>
+<p>​			密文：흖弹눈됼</p>
+<p>​			明文：安德雷德</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img108.png" class="" title="img108">
+
+
+
+<h2 id="5-运行说明"><a href="#5-运行说明" class="headerlink" title="5 运行说明"></a>5 运行说明</h2><h3 id="5-1-基础加解密功能"><a href="#5-1-基础加解密功能" class="headerlink" title="5.1 基础加解密功能"></a>5.1 基础加解密功能</h3><h4 id="5-1-1-用户交互界面"><a href="#5-1-1-用户交互界面" class="headerlink" title="5.1.1 用户交互界面"></a>5.1.1 用户交互界面</h4><p>​	① 加密模块（首页）</p>
+<p>​	运行该程序，可得到如下界面，在该界面用户可以选择“二进制加密”模式或者“ASCⅡ编码字符串加密”模式，手动添加明文与密钥，加密所得密文不可进行修改，仅供浏览；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img1.png" class="" title="img1">
+
+
+
+<p>​	可以在左上角选择输入原文/密文的格式，需要注意的是每个界面的“结果”处的密文框和明文框均无法直接进行编辑，只能输出展示“加密”和“解密”的结果；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img2.jpg" class="" title="img2">
+
+
+
+<p>​	② 解密模块</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img3.jpg" class="" title="img3">
+
+
+
+<p>​	③ 中文模块</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img4.jpg" class="" title="img4">
+
+
+
+<h4 id="5-1-2-加密解密流程"><a href="#5-1-2-加密解密流程" class="headerlink" title="5.1.2 加密解密流程"></a>5.1.2 加密解密流程</h4><p>​	对于S-AES算法的基础实现，本系统提供纯二进制加密解密功能、ASCⅡ编码字符串加密解密功能和中文加密解密功能，在用户交互界面左上角可以选择。</p>
+<p>​	① 二进制加密解密</p>
+<p>​		密钥：1010101010101010</p>
+<p>​		输入明文：1100110011001100</p>
+<p>​		所得密文：0100001110000001</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img9.png" class="" title="img9">
+
+
+
+<p>​		沿用之前密钥：1010101010101010</p>
+<p>​		输入密文：0100001110000001</p>
+<p>​		解得明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img10.png" class="" title="img10">
+
+
+
+<p>​	② ASCⅡ编码字符串加密解密</p>
+<p>​		密钥：1010101010101010</p>
+<p>​		明文：Andrade</p>
+<p>​		求得密文：Dc~Ôey[</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img29.png" class="" title="img29">
+
+
+
+<p>​		密钥：1010101010101010</p>
+<p>​		密文：Dc~Ôey[</p>
+<p>​		解得明文：Andrade</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img30.png" class="" title="img30">
+
+
+
+<p>​	③ 中文加密解密</p>
+<p>​		密钥：1010101010101010</p>
+<p>​		明文：原神启动</p>
+<p>​		求得密文：쨱愜셑넋</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img31.png" class="" title="img31">
+
+
+
+<p>​		密钥：1010101010101010</p>
+<p>​		密文：쨱愜셑넋</p>
+<p>​		解得明文：原神启动</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img32.png" class="" title="img32">
+
+
+
+<h3 id="5-2-双重加密"><a href="#5-2-双重加密" class="headerlink" title="5.2 双重加密"></a>5.2 双重加密</h3><h4 id="5-2-1-用户交互界面-双重加密模块"><a href="#5-2-1-用户交互界面-双重加密模块" class="headerlink" title="5.2.1 用户交互界面-双重加密模块"></a>5.2.1 用户交互界面-双重加密模块</h4><p>​	在该界面可以输入16位二进制明文/密文、32位二进制密钥，进行双重加密，并在下面输出对应的密文/明文。</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img5.jpg" class="" title="img5">
+
+
+
+<h4 id="5-2-2-双重加密解密流程"><a href="#5-2-2-双重加密解密流程" class="headerlink" title="5.2.2 双重加密解密流程"></a>5.2.2 双重加密解密流程</h4><p>​	密钥：10101010101010101010101010101010</p>
+<p>​	明文：1100110011001100</p>
+<p>​	密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img33.png" class="" title="img33">
+
+
+
+<p>​	密钥：10101010101010101010101010101010</p>
+<p>​	密文：1100000000000101</p>
+<p>​	明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img34.png" class="" title="img34">
+
+
+
+<h3 id="5-3-中间相遇攻击"><a href="#5-3-中间相遇攻击" class="headerlink" title="5.3 中间相遇攻击"></a>5.3 中间相遇攻击</h3><h4 id="5-3-1-用户交互界面-中间相遇攻击模块"><a href="#5-3-1-用户交互界面-中间相遇攻击模块" class="headerlink" title="5.3.1 用户交互界面-中间相遇攻击模块"></a>5.3.1 用户交互界面-中间相遇攻击模块</h4><p>​	在该界面，可以在左侧依次输入均为16位二进制数的明密文对，每完成一对明密文对的输入之后，点击“添加”按钮，便会添加在右上方的文本域中，可以输入一对或多对明密文对，完成全部输入后，点击“破解”按钮便可以执行中间相遇攻击，破解所得到的可能的密钥在右下方的文本域中显现，当可能的密钥过多时，只显示前10个。</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img6.jpg" class="" title="img6">
+
+
+
+<h4 id="5-3-2-中间相遇攻击流程"><a href="#5-3-2-中间相遇攻击流程" class="headerlink" title="5.3.2 中间相遇攻击流程"></a>5.3.2 中间相遇攻击流程</h4><h5 id="5-3-2-1-输入明密文对"><a href="#5-3-2-1-输入明密文对" class="headerlink" title="5.3.2.1 输入明密文对"></a>5.3.2.1 输入明密文对</h5><p>​	① 输入单对明密文对</p>
+<p>​		在左侧相应位置输入已知的一对明密文对后，点击添加即可添加到右侧明密文对文本域中；</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img35.png" class="" title="img35">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img36.png" class="" title="img36">
+
+<p>​		注：点击“清空”按钮可以情况已存储的已知明密文对，从而方便重新输入明密文对。</p>
+<p>​	② 输入多对明密文对</p>
+<p>​		a. 输入两对明密文对</p>
+<p>​			明文1：1100110011001100</p>
+<p>​			密文1：1100000000000101</p>
+<p>​			明文2：1010101010101010</p>
+<p>​			密文2：1001011001100110</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img40.png" class="" title="img40">
+
+
+
+<p>​		b. 输入三对明密文对</p>
+<p>​			明文1：1100110011001100</p>
+<p>​			密文1：1100000000000101</p>
+<p>​			明文2：1010101010101010</p>
+<p>​			密文2：1001011001100110</p>
+<p>​			明文3：1110001110001010</p>
+<p>​			密文3：1011010101100111</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img42.png" class="" title="img42">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img43.png" class="" title="img43">
+
+
+
+<p>​			注：根据需要可以输入更多的明密文对，此处不再一一展示。</p>
+<h5 id="5-3-2-2-破解测试"><a href="#5-3-2-2-破解测试" class="headerlink" title="5.3.2.2 破解测试"></a>5.3.2.2 破解测试</h5><p>​	① 输入单对明密文对</p>
+<p>​		点击“破解”按钮即可开始中间相遇攻击破解可能的密钥，由于单对明密文对可以破解出的可能的密钥数量过多，所以仅展示其中一部分（十个），推荐输入两对及以上明密文对，方便精准找到密钥；</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<p>​		可能的密钥：</p>
+<p>​		① 01010100010110110000000000000000；</p>
+<p>​		② 01100010010011100000000000000000；</p>
+<p>​		③ 00010100001110100000000000000011；</p>
+<p>​		④ 00110001001101100000000000000100；</p>
+<p>​		⑤ 11101100000101000000000000001000；</p>
+<p>​		⑥ 01000000100100000000000000001000；</p>
+<p>​		⑦ 00101110111111110000000000001001；</p>
+<p>​		⑧ 10000101010101010000000000001010；</p>
+<p>​		⑨ 10001001101010010000000000001010；</p>
+<p>​		⑩ 01011111101001000000000000001011。</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img38.png" class="" title="img38">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img37.png" class="" title="img37">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img39.png" class="" title="img39">
+
+
+
+<p>​	② 输入多对明密文对</p>
+<p>​		a. 输入两对明密文对</p>
+<p>​			明文1：1100110011001100</p>
+<p>​			密文1：1100000000000101</p>
+<p>​			明文2：1010101010101010</p>
+<p>​			密文2：1001011001100110</p>
+<p>​			可能的密钥：</p>
+<p>​			10101010101010101010101010101010（此时对于该样例已经可以通过中间相遇攻击破解得到唯一的密钥）</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img41.png" class="" title="img41">
+
+
+
+<p>​		b. 输入三对明密文对</p>
+<p>​			明文1：1100110011001100</p>
+<p>​			密文1：1100000000000101</p>
+<p>​			明文2：1010101010101010</p>
+<p>​			密文2：1001011001100110</p>
+<p>​			明文3：1110001110001010</p>
+<p>​			密文3：1011010101100111</p>
+<p>​			可能的密钥：</p>
+<p>​			10101010101010101010101010101010</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img44.png" class="" title="img44">
+
+
+
+<h5 id="5-3-2-3-封闭测试"><a href="#5-3-2-3-封闭测试" class="headerlink" title="5.3.2.3 封闭测试"></a>5.3.2.3 封闭测试</h5><p>​	将输入单对明密文对时破解得到的可能的密钥带回到加密解密测试中，测试密钥的正确性（以下展示两组可能的密钥的测试结果）；</p>
+<p>​	① 使用破解得到的密钥-01100010010011100000000000000000</p>
+<p>​		密钥：01100010010011100000000000000000</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img45.png" class="" title="img45">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img48.png" class="" title="img48">
+
+
+
+<p>​	② 使用破解得到的密钥-10001001101010010000000000001010</p>
+<p>​		密钥：10001001101010010000000000001010</p>
+<p>​		明文：1100110011001100</p>
+<p>​		密文：1100000000000101</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img46.png" class="" title="img46">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img47.png" class="" title="img47">
+
+
+
+<h3 id="5-4-三重加密"><a href="#5-4-三重加密" class="headerlink" title="5.4 三重加密"></a>5.4 三重加密</h3><h4 id="5-4-1-用户交互界面-三重加密模块"><a href="#5-4-1-用户交互界面-三重加密模块" class="headerlink" title="5.4.1 用户交互界面-三重加密模块"></a>5.4.1 用户交互界面-三重加密模块</h4><p>​	在该界面，可以输入16位二进制明文/密文、32位二进制密钥，输出得到相对应的16位二进制密文/明文，需要注意的是，最下方的“结果”框仅供浏览，不允许用户修改。</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img7.jpg" class="" title="img7">
+
+
+
+<h4 id="5-4-2-三重加密解密测试"><a href="#5-4-2-三重加密解密测试" class="headerlink" title="5.4.2 三重加密解密测试"></a>5.4.2 三重加密解密测试</h4><p>​	密钥：10101010101010101010101010101010</p>
+<p>​	明文：1100110011001100</p>
+<p>​	密文：1001010101101111</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img49.png" class="" title="img49">
+
+
+
+<p>​	密钥：10101010101010101010101010101010</p>
+<p>​	密文：1001010101101111</p>
+<p>​	明文：1100110011001100</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img50.png" class="" title="img50">
+
+
+
+<h3 id="5-5-分组加密"><a href="#5-5-分组加密" class="headerlink" title="5.5 分组加密"></a>5.5 分组加密</h3><h4 id="5-5-1-用户交互界面-分组加密模块"><a href="#5-5-1-用户交互界面-分组加密模块" class="headerlink" title="5.5.1 用户交互界面-分组加密模块"></a>5.5.1 用户交互界面-分组加密模块</h4><p>​	在该界面，可以输入16位二进制明文/密文、16位二进制初始向量、16位二进制密钥，点击“加密”/“解密”按钮启动分组加密工作模式进行加密解密操作，所得16位二进制密文/明文在最下方“结果”框中输出，需要注意的是，最下方的“结果”框中内容不允许用户修改，仅供浏览。</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img8.jpg" class="" title="img8">
+
+
+
+<h4 id="5-5-2-分组加密解密流程"><a href="#5-5-2-分组加密解密流程" class="headerlink" title="5.5.2 分组加密解密流程"></a>5.5.2 分组加密解密流程</h4><p>​	初始向量：1001011001001110</p>
+<p>​	密钥：1010101010101010</p>
+<p>​	明文：安德雷德</p>
+<p>​	所得密文：흖弹눈됼</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img52.png" class="" title="img52">
+
+
+
+<p>​	初始向量：1001011001001110</p>
+<p>​	密钥：1010101010101010</p>
+<p>​	密文：흖弹눈됼</p>
+<p>​	解得明文：安德雷德</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img51.png" class="" title="img51">
+
+
+
+<h2 id="6-故障排除"><a href="#6-故障排除" class="headerlink" title="6 故障排除"></a>6 故障排除</h2><h3 id="6-1-异常处理"><a href="#6-1-异常处理" class="headerlink" title="6.1 异常处理"></a>6.1 异常处理</h3><p>​	① 当加密时输入明文不符合长度要求时（解密时同理）；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img13.png" class="" title="img13">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img14.png" class="" title="img14">
+
+
+
+<p>​	② 当加密时输入明文类型不匹配时（解密时同理）；</p>
+<p>​		a. 输入明文为ASCⅡ编码字符串</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img17.png" class="" title="img17">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img18.png" class="" title="img18">
+
+
+
+<p>​		b. 输入明文为中文字符</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img15.png" class="" title="img15">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img16.png" class="" title="img16">
+
+
+
+<p>​	③ 当加密时输入密钥不符合长度要求时（解密时同理）；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img11.png" class="" title="img11">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img12.png" class="" title="img12">
+
+
+
+<p>​	④当加密时输入明文、密钥均不规范时（解密时同理）；</p>
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img19.png" class="" title="img19">
+
+<img src="/2023/10/30/s-aes-yong-hu-zhi-nan/img20.png" class="" title="img20">
+
+
+
+
+
+<h3 id="6-2-常见问题"><a href="#6-2-常见问题" class="headerlink" title="6.2 常见问题"></a>6.2 常见问题</h3><h4 id="6-2-1-问题1：程序无法启动或崩溃"><a href="#6-2-1-问题1：程序无法启动或崩溃" class="headerlink" title="6.2.1 问题1：程序无法启动或崩溃"></a>6.2.1 问题1：程序无法启动或崩溃</h4><ul>
+<li>排除方法：<ul>
+<li>确保已安装所需的Java JDK并正确配置了JAVA_HOME环境变量；</li>
+<li>检查程序的依赖项，确保所有必需的库和文件都位于正确的位置；</li>
+<li>检查程序的日志文件或控制台输出，以查看是否有错误消息，根据错误消息进行进一步的排除。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-2-问题2：加密或解密操作失败"><a href="#6-2-2-问题2：加密或解密操作失败" class="headerlink" title="6.2.2 问题2：加密或解密操作失败"></a>6.2.2 问题2：加密或解密操作失败</h4><ul>
+<li>排除方法：<ul>
+<li>检查输入数据和密钥的格式，确保它们符合程序的要求；</li>
+<li>验证密钥生成过程，确保生成的密钥正确；</li>
+<li>检查加密或解密算法的实现，确保它遵循S-AES算法规范；</li>
+<li>如果可能，尝试使用其他输入数据和密钥进行测试，以确定问题是否特定于某个数据集。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-3-问题3：程序性能不佳或响应时间过长"><a href="#6-2-3-问题3：程序性能不佳或响应时间过长" class="headerlink" title="6.2.3 问题3：程序性能不佳或响应时间过长"></a>6.2.3 问题3：程序性能不佳或响应时间过长</h4><ul>
+<li>排除方法：<ul>
+<li>检查计算密集型操作，如数据加密或解密，是否有优化的机会，例如使用更高效的算法或数据结构；</li>
+<li>确保程序没有内存泄漏问题，通过检查内存使用情况来排除此类问题；</li>
+<li>考虑并发处理，使用多线程来提高性能，特别是在使用中间相遇攻击模块时。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-4-问题4：用户界面问题"><a href="#6-2-4-问题4：用户界面问题" class="headerlink" title="6.2.4 问题4：用户界面问题"></a>6.2.4 问题4：用户界面问题</h4><ul>
+<li>排除方法：<ul>
+<li>检查用户界面元素的布局和设计，确保它们易于理解和使用；</li>
+<li>确保用户界面在不同操作系统和分辨率下都能正常工作；</li>
+<li>收集用户反馈，并根据反馈来改进用户界面和用户体验。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-5-问题5：安全性问题"><a href="#6-2-5-问题5：安全性问题" class="headerlink" title="6.2.5 问题5：安全性问题"></a>6.2.5 问题5：安全性问题</h4><ul>
+<li>排除方法：<ul>
+<li>定期更新程序以修复已知的安全漏洞；</li>
+<li>使用密码学库和工具来确保数据的机密性和完整性；</li>
+<li>进行安全审查，以识别潜在的安全问题并采取措施加以解决。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-3-技术支持"><a href="#6-3-技术支持" class="headerlink" title="6.3 技术支持"></a>6.3 技术支持</h3><p>​	有其他任何问题，请随时联系我们，请备注来意！</p>
+<p>​	邮箱：<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a></p>
+<h2 id="7-联系我们"><a href="#7-联系我们" class="headerlink" title="7 联系我们"></a>7 联系我们</h2><h3 id="7-1-关于开发者团队"><a href="#7-1-关于开发者团队" class="headerlink" title="7.1 关于开发者团队"></a>7.1 关于开发者团队</h3><p>​	课程名称：信息安全导论</p>
+<p>​	教学班级：992987-001</p>
+<p>​	任课教师：胡海波</p>
+<p>​	单位：重庆大学大数据与软件学院</p>
+<p>​	主管部门：重庆大学大数据与软件学院2021级软件工程03班竹园五栋513</p>
+<p>​	小组代号：Andrade</p>
+<p>​	小组成员：明子鸿 徐涵浩</p>
+<h3 id="7-2-联系方式"><a href="#7-2-联系方式" class="headerlink" title="7.2 联系方式"></a>7.2 联系方式</h3><p>​	邮箱：<a href="mailto:shennmo@foxmall.com">shennmo@foxmall.com</a></p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>​	在使用本S-AES程序的过程中，您已经了解了S-AES算法的基本原理和实际操作，并且切身体会了多重加密、中间相遇攻击和分组加密工作模式的实际应用。S-AES不仅是一个强大的教育工具，还可以作为密码学研究和实验的基础。虽然S-AES的安全性较低，不适合用于实际的数据加密，但它帮助您打开了密码学领域的大门，让您深入了解加密算法的工作方式。</p>
+<p>​	在继续您的密码学学习和研究旅程时，建议深入研究更复杂、更安全的加密算法，如标准AES。同时，您可以探索密码学领域的其他方面，包括公钥加密、数字签名、哈希函数等，以获得更全面的密码学知识。</p>
+<p>​	最后，感谢您选择使用本S-AES算法实现程序。无论您是密码学新手还是专业人士，都希望S-AES程序对您的学习和研究工作有所帮助。请您继续探索密码学的奥秘，为网络安全和数据隐私做出贡献，并祝您在密码学领域的旅程中取得成功！如果您有任何疑问或需要进一步的帮助，请随时与我们联系。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Seal</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://SealParadise.github.io/2023/10/30/s-aes-yong-hu-zhi-nan/">http://SealParadise.github.io/2023/10/30/s-aes-yong-hu-zhi-nan/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Seal</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                                    <span class="chip bg-color">信息安全导论</span>
+                                </a>
+                            
+                                <a href="/tags/S-AES/">
+                                    <span class="chip bg-color">S-AES</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">
+                                    <span class="chip bg-color">用户指南</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                                    <span class="chip bg-color">大三上</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">双腿交替向前，总会抵达终点</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/10/30/s-aes-kai-fa-shou-ce/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/35.jpg" class="responsive-img" alt="S-AES开发手册">
+                        
+                        <span class="card-title">S-AES开发手册</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本手册旨在提供有关S-AES算法实现程序的详细开发和使用信息。它包括了安装、配置、使用说明、实现细节以及测试等方面的信息，以帮助开发者正确使用和理解该程序。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                    大三上
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                        <span class="chip bg-color">信息安全导论</span>
+                    </a>
+                    
+                    <a href="/tags/S-AES/">
+                        <span class="chip bg-color">S-AES</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                        <span class="chip bg-color">大三上</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                        <span class="chip bg-color">开发手册</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/10/29/xin-xi-an-quan-dao-lun-s-aes-zuo-ye/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="信息安全导论S-AES作业">
+                        
+                        <span class="card-title">信息安全导论S-AES作业</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            根据"信息安全导论"课程第8-9次课讲述的AES算法，在课外认真阅读教科书附录D的内容，学习了解S-AES算法，并使用你们自己最擅长的程序语言(C++/QT或Java+Swing、Python+QT等)来编程实现加、解密程序。本文为Andrade小组的S-AES算法实现报告。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/" class="post-category">
+                                    大三上
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">
+                        <span class="chip bg-color">信息安全导论</span>
+                    </a>
+                    
+                    <a href="/tags/S-AES/">
+                        <span class="chip bg-color">S-AES</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                        <span class="chip bg-color">大三上</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/">
+                        <span class="chip bg-color">测试报告</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">Seal</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">50k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SealParadise" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:916662613@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=916662613" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 916662613" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/fei-xia-bu-hui-fei-50" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/fei-xia-bu-hui-fei-50" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
