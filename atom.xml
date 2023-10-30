@@ -6,7 +6,7 @@
   <link href="http://sealparadise.github.io/atom.xml" rel="self"/>
   
   <link href="http://sealparadise.github.io/"/>
-  <updated>2023-10-30T08:00:52.049Z</updated>
+  <updated>2023-10-30T11:21:10.844Z</updated>
   <id>http://sealparadise.github.io/</id>
   
   <author>
@@ -17,586 +17,582 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>数据库原理与设计实验四</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-si/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-si/</id>
-    <published>2023-10-30T07:56:38.000Z</published>
-    <updated>2023-10-30T08:00:52.049Z</updated>
+    <title>软件综合实践设计报告</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-she-ji-bao-gao/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-she-ji-bao-gao/</id>
+    <published>2023-10-30T11:20:02.000Z</published>
+    <updated>2023-10-30T11:21:10.844Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据库原理与设计实验四&quot;&gt;&lt;a href=&quot;#数据库原理与设计实验四&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;软件综合实践课程设计报告&quot;&gt;&lt;a href=&quot;#软件综合实践课程设计报告&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="软件综合实践" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/"/>
+    
+    <category term="设计报告" scheme="http://sealparadise.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件综合实践周报3</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-3/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-3/</id>
+    <published>2023-10-30T11:16:05.000Z</published>
+    <updated>2023-10-30T11:19:28.123Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;软件综合实践周报3&quot;&gt;&lt;a href=&quot;#软件综合实践周报3&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="软件综合实践" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/"/>
+    
+    <category term="进度周报" scheme="http://sealparadise.github.io/tags/%E8%BF%9B%E5%BA%A6%E5%91%A8%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件综合实践周报2</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-2/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-2/</id>
+    <published>2023-10-30T11:15:51.000Z</published>
+    <updated>2023-10-30T11:19:05.403Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;软件综合实践周报2&quot;&gt;&lt;a href=&quot;#软件综合实践周报2&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="软件综合实践" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/"/>
+    
+    <category term="进度周报" scheme="http://sealparadise.github.io/tags/%E8%BF%9B%E5%BA%A6%E5%91%A8%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件综合实践周报1</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-1/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-zong-he-shi-jian-zhou-bao-1/</id>
+    <published>2023-10-30T11:15:36.000Z</published>
+    <updated>2023-10-30T11:18:32.831Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;软件综合实践周报1&quot;&gt;&lt;a href=&quot;#软件综合实践周报1&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="软件综合实践" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/"/>
+    
+    <category term="进度周报" scheme="http://sealparadise.github.io/tags/%E8%BF%9B%E5%BA%A6%E5%91%A8%E6%8A%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法设计与分析上机练习4</title>
+    <link href="http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-4/"/>
+    <id>http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-4/</id>
+    <published>2023-10-30T11:02:53.000Z</published>
+    <updated>2023-10-30T11:17:15.702Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;算法设计与分析上机练习4&quot;&gt;&lt;a href=&quot;#算法设计与分析上机练习4&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据库原理与设计" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1/"/>
+    <category term="算法设计与分析" scheme="http://sealparadise.github.io/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
-    <title>数据库原理与设计实验三</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-san/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-san/</id>
-    <published>2023-10-30T07:56:23.000Z</published>
-    <updated>2023-10-30T08:00:26.627Z</updated>
+    <title>算法设计与分析上机练习3</title>
+    <link href="http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-3/"/>
+    <id>http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-3/</id>
+    <published>2023-10-30T11:02:37.000Z</published>
+    <updated>2023-10-30T11:17:10.539Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据库原理与设计实验三&quot;&gt;&lt;a href=&quot;#数据库原理与设计实验三&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;算法设计与分析上机练习3&quot;&gt;&lt;a href=&quot;#算法设计与分析上机练习3&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据库原理与设计" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1/"/>
+    <category term="算法设计与分析" scheme="http://sealparadise.github.io/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
-    <title>数据库原理与设计实验二</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-er/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-er/</id>
-    <published>2023-10-30T07:56:05.000Z</published>
-    <updated>2023-10-30T07:59:58.056Z</updated>
+    <title>算法设计与分析上机练习2</title>
+    <link href="http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-2/"/>
+    <id>http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-2/</id>
+    <published>2023-10-30T11:02:26.000Z</published>
+    <updated>2023-10-30T11:17:04.295Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据库原理与设计实验二&quot;&gt;&lt;a href=&quot;#数据库原理与设计实验二&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;算法设计与分析上机练习2&quot;&gt;&lt;a href=&quot;#算法设计与分析上机练习2&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据库原理与设计" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1/"/>
+    <category term="算法设计与分析" scheme="http://sealparadise.github.io/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
-    <title>数据库原理与设计实验一</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-yi/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-ku-yuan-li-yu-she-ji-shi-yan-yi/</id>
-    <published>2023-10-30T07:55:48.000Z</published>
-    <updated>2023-10-30T08:00:55.735Z</updated>
+    <title>算法设计与分析上机练习1</title>
+    <link href="http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-1/"/>
+    <id>http://sealparadise.github.io/2023/10/30/suan-fa-she-ji-yu-fen-xi-shang-ji-lian-xi-1/</id>
+    <published>2023-10-30T11:02:12.000Z</published>
+    <updated>2023-10-30T11:16:56.348Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据库原理与设计实验一&quot;&gt;&lt;a href=&quot;#数据库原理与设计实验一&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;算法设计与分析上机练习1&quot;&gt;&lt;a href=&quot;#算法设计与分析上机练习1&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据库原理与设计" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E8%AE%BE%E8%AE%A1/"/>
+    <category term="算法设计与分析" scheme="http://sealparadise.github.io/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验六</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-liu/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-liu/</id>
-    <published>2023-10-30T07:25:40.000Z</published>
-    <updated>2023-10-30T08:01:38.619Z</updated>
+    <title>软件工程导论04文档</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-04-wen-dang/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-04-wen-dang/</id>
+    <published>2023-10-30T10:52:00.000Z</published>
+    <updated>2023-10-30T10:55:58.586Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验六&quot;&gt;&lt;a href=&quot;#数据结构与算法实验六&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;软件工程导论-测试计划说明书&quot;&gt;&lt;a href=&quot;#软件工程导论-测试计划说明书&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="软件工程导论" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验五</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-wu/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-wu/</id>
-    <published>2023-10-30T07:25:27.000Z</published>
-    <updated>2023-10-30T08:01:33.718Z</updated>
+    <title>软件工程导论03文档</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-03-wen-dang/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-03-wen-dang/</id>
+    <published>2023-10-30T10:51:48.000Z</published>
+    <updated>2023-10-30T10:56:11.407Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验五&quot;&gt;&lt;a href=&quot;#数据结构与算法实验五&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;软件工程导论-概要设计说明书&quot;&gt;&lt;a href=&quot;#软件工程导论-概要设计说明书&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="软件工程导论" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验四</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-si/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-si/</id>
-    <published>2023-10-30T07:25:15.000Z</published>
-    <updated>2023-10-30T07:41:37.319Z</updated>
+    <title>软件工程导论02文档</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-02-wen-dang/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-02-wen-dang/</id>
+    <published>2023-10-30T10:51:36.000Z</published>
+    <updated>2023-10-30T10:55:00.485Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验四&quot;&gt;&lt;a href=&quot;#数据结构与算法实验四&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;软件工程导论-需求规格说明书&quot;&gt;&lt;a href=&quot;#软件工程导论-需求规格说明书&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="软件工程导论" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验三</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-san/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-san/</id>
-    <published>2023-10-30T07:25:01.000Z</published>
-    <updated>2023-10-30T07:40:19.659Z</updated>
+    <title>软件工程导论01文档</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-01-wen-dang/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ruan-jian-gong-cheng-dao-lun-01-wen-dang/</id>
+    <published>2023-10-30T10:51:25.000Z</published>
+    <updated>2023-10-30T10:54:29.442Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验三&quot;&gt;&lt;a href=&quot;#数据结构与算法实验三&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;软件工程导论-项目开发计划说明书&quot;&gt;&lt;a href=&quot;#软件工程导论-项目开发计划说明书&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="软件工程导论" scheme="http://sealparadise.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AF%BC%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验二</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-er/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-er/</id>
-    <published>2023-10-30T07:24:38.000Z</published>
-    <updated>2023-10-30T07:39:23.869Z</updated>
+    <title>计算机网络实验三</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-san/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-san/</id>
+    <published>2023-10-30T10:34:04.000Z</published>
+    <updated>2023-10-30T10:36:38.736Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验二&quot;&gt;&lt;a href=&quot;#数据结构与算法实验二&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;计算机网络实验三&quot;&gt;&lt;a href=&quot;#计算机网络实验三&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="计算机网络" scheme="http://sealparadise.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
   <entry>
-    <title>数据结构与算法实验一</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-yi/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-ju-jie-gou-yu-suan-fa-shi-yan-yi/</id>
-    <published>2023-10-30T07:24:23.000Z</published>
-    <updated>2023-10-30T07:38:35.381Z</updated>
+    <title>计算机网络实验二</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-er/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-er/</id>
+    <published>2023-10-30T10:33:53.000Z</published>
+    <updated>2023-10-30T10:36:02.559Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数据结构与算法实验一&quot;&gt;&lt;a href=&quot;#数据结构与算法实验一&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;计算机网络实验二&quot;&gt;&lt;a href=&quot;#计算机网络实验二&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-    <category term="数据结构与算法" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <category term="计算机网络" scheme="http://sealparadise.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
   <entry>
-    <title>数学实验第九周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-jiu-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-jiu-zhou-zuo-ye/</id>
-    <published>2023-10-30T07:08:09.000Z</published>
-    <updated>2023-10-30T07:17:17.795Z</updated>
+    <title>计算机网络实验一</title>
+    <link href="http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-yi/"/>
+    <id>http://sealparadise.github.io/2023/10/30/ji-suan-ji-wang-luo-shi-yan-yi/</id>
+    <published>2023-10-30T10:33:42.000Z</published>
+    <updated>2023-10-30T10:35:22.588Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第九周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第九周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;计算机网络实验一&quot;&gt;&lt;a href=&quot;#计算机网络实验一&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
+    <category term="计算机网络" scheme="http://sealparadise.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
   </entry>
   
   <entry>
-    <title>数学实验第八周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-ba-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-ba-zhou-zuo-ye/</id>
-    <published>2023-10-30T07:07:54.000Z</published>
-    <updated>2023-10-30T07:17:04.934Z</updated>
+    <title>操作系统实验四</title>
+    <link href="http://sealparadise.github.io/2023/10/30/cao-zuo-xi-tong-shi-yan-si/"/>
+    <id>http://sealparadise.github.io/2023/10/30/cao-zuo-xi-tong-shi-yan-si/</id>
+    <published>2023-10-30T10:24:50.000Z</published>
+    <updated>2023-10-30T10:35:34.948Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第八周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第八周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;操作系统实验四&quot;&gt;&lt;a href=&quot;#操作系统实验四&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
+    <category term="操作系统" scheme="http://sealparadise.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
   </entry>
   
   <entry>
-    <title>数学实验第七周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-qi-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-qi-zhou-zuo-ye/</id>
-    <published>2023-10-30T07:07:36.000Z</published>
-    <updated>2023-10-30T07:17:29.244Z</updated>
+    <title>操作系统实验三</title>
+    <link href="http://sealparadise.github.io/2023/10/30/cao-zuo-xi-tong-shi-yan-san/"/>
+    <id>http://sealparadise.github.io/2023/10/30/cao-zuo-xi-tong-shi-yan-san/</id>
+    <published>2023-10-30T10:24:41.000Z</published>
+    <updated>2023-10-30T10:35:28.451Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第七周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第七周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;操作系统实验三&quot;&gt;&lt;a href=&quot;#操作系统实验三&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
-  </entry>
-  
-  <entry>
-    <title>数学实验第六周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-liu-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-liu-zhou-zuo-ye/</id>
-    <published>2023-10-30T07:07:21.000Z</published>
-    <updated>2023-10-30T07:17:23.705Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;数学实验第六周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第六周实验报告&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
-    
-    
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
-    
-    <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
+    <category term="操作系统" scheme="http://sealparadise.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
   <entry>
-    <title>数学实验第四周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-si-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-si-zhou-zuo-ye/</id>
-    <published>2023-10-30T07:06:56.000Z</published>
-    <updated>2023-10-30T07:17:45.707Z</updated>
+    <title>Java EE程序设计实验三</title>
+    <link href="http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-san/"/>
+    <id>http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-san/</id>
+    <published>2023-10-30T10:17:10.000Z</published>
+    <updated>2023-10-30T10:27:52.273Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第四周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第四周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验三&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验三&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验三&quot;&gt;&lt;/a&gt;Java</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
+    <category term="Java EE程序设计" scheme="http://sealparadise.github.io/tags/Java-EE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
   </entry>
   
   <entry>
-    <title>数学实验第三周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-san-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-san-zhou-zuo-ye/</id>
-    <published>2023-10-30T06:50:48.000Z</published>
-    <updated>2023-10-30T07:17:38.552Z</updated>
+    <title>Java EE程序设计实验二</title>
+    <link href="http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-er/"/>
+    <id>http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-er/</id>
+    <published>2023-10-30T10:16:50.000Z</published>
+    <updated>2023-10-30T10:28:00.850Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第三周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第三周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验二&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验二&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验二&quot;&gt;&lt;/a&gt;Java</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
+    <category term="Java EE程序设计" scheme="http://sealparadise.github.io/tags/Java-EE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
   </entry>
   
   <entry>
-    <title>数学实验第二周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-er-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-er-zhou-zuo-ye/</id>
-    <published>2023-10-30T06:50:23.000Z</published>
-    <updated>2023-10-30T07:17:11.003Z</updated>
+    <title>Java EE程序设计实验一</title>
+    <link href="http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-yi/"/>
+    <id>http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-yi/</id>
+    <published>2023-10-30T10:16:34.000Z</published>
+    <updated>2023-10-30T10:27:44.453Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;数学实验第二周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第二周实验报告&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验一&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验一&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验一&quot;&gt;&lt;/a&gt;Java</summary>
         
       
     
     
     
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
+    <category term="Java EE程序设计" scheme="http://sealparadise.github.io/tags/Java-EE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
     
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
     
     <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数学实验第一周作业</title>
-    <link href="http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-yi-zhou-zuo-ye/"/>
-    <id>http://sealparadise.github.io/2023/10/30/shu-xue-shi-yan-di-yi-zhou-zuo-ye/</id>
-    <published>2023-10-30T05:44:28.000Z</published>
-    <updated>2023-10-30T07:17:52.413Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;数学实验第一周实验报告&quot;&gt;&lt;a href=&quot;#数学实验第一周实验报告&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
-    
-    
-    <category term="数学实验" scheme="http://sealparadise.github.io/tags/%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/"/>
-    
-    <category term="大二上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8A/"/>
-    
-    <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>S-DES用户指南</title>
-    <link href="http://sealparadise.github.io/2023/10/30/s-des-yong-hu-zhi-nan/"/>
-    <id>http://sealparadise.github.io/2023/10/30/s-des-yong-hu-zhi-nan/</id>
-    <published>2023-10-30T00:46:31.000Z</published>
-    <updated>2023-10-30T07:19:13.140Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Andrade-S-DES-用户指南&quot;&gt;&lt;a href=&quot;#Andrade-S-DES-用户指南&quot; class=&quot;headerlink&quot; title=&quot;Andrade S-DES 用户指南&quot;&gt;&lt;/a&gt;Andrade S-DES</summary>
-        
-      
-    
-    
-    
-    <category term="大三上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/"/>
-    
-    
-    <category term="信息安全导论" scheme="http://sealparadise.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/"/>
-    
-    <category term="用户指南" scheme="http://sealparadise.github.io/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"/>
-    
-    <category term="大三上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/"/>
-    
-    <category term="S-DES" scheme="http://sealparadise.github.io/tags/S-DES/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>S-DES开发手册</title>
-    <link href="http://sealparadise.github.io/2023/10/30/s-des-kai-fa-shou-ce/"/>
-    <id>http://sealparadise.github.io/2023/10/30/s-des-kai-fa-shou-ce/</id>
-    <published>2023-10-30T00:45:46.000Z</published>
-    <updated>2023-10-30T07:18:59.437Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Andrade-S-DES-开发手册&quot;&gt;&lt;a href=&quot;#Andrade-S-DES-开发手册&quot; class=&quot;headerlink&quot; title=&quot;Andrade S-DES 开发手册&quot;&gt;&lt;/a&gt;Andrade S-DES</summary>
-        
-      
-    
-    
-    
-    <category term="大三上" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%B8%89%E4%B8%8A/"/>
-    
-    
-    <category term="信息安全导论" scheme="http://sealparadise.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/"/>
-    
-    <category term="大三上" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/"/>
-    
-    <category term="S-DES" scheme="http://sealparadise.github.io/tags/S-DES/"/>
-    
-    <category term="开发手册" scheme="http://sealparadise.github.io/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
