@@ -6,7 +6,7 @@
   <link href="http://sealparadise.github.io/atom.xml" rel="self"/>
   
   <link href="http://sealparadise.github.io/"/>
-  <updated>2023-10-30T11:21:10.844Z</updated>
+  <updated>2023-11-03T06:59:16.096Z</updated>
   <id>http://sealparadise.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络作业二</title>
+    <link href="http://sealparadise.github.io/2023/11/03/ji-suan-ji-wang-luo-zuo-ye-er/"/>
+    <id>http://sealparadise.github.io/2023/11/03/ji-suan-ji-wang-luo-zuo-ye-er/</id>
+    <published>2023-11-03T06:00:34.000Z</published>
+    <updated>2023-11-03T06:59:16.096Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;计算机网络作业二&quot;&gt;&lt;a href=&quot;#计算机网络作业二&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="计算机网络" scheme="http://sealparadise.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="课程作业" scheme="http://sealparadise.github.io/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络作业一</title>
+    <link href="http://sealparadise.github.io/2023/11/03/ji-suan-ji-wang-luo-zuo-ye-yi/"/>
+    <id>http://sealparadise.github.io/2023/11/03/ji-suan-ji-wang-luo-zuo-ye-yi/</id>
+    <published>2023-11-03T05:52:53.000Z</published>
+    <updated>2023-11-03T06:59:20.968Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;计算机网络作业一&quot;&gt;&lt;a href=&quot;#计算机网络作业一&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    
+    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
+    
+    <category term="计算机网络" scheme="http://sealparadise.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="课程作业" scheme="http://sealparadise.github.io/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/"/>
+    
+  </entry>
   
   <entry>
     <title>软件综合实践设计报告</title>
@@ -522,64 +580,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验三&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验三&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验三&quot;&gt;&lt;/a&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
-    
-    
-    <category term="Java EE程序设计" scheme="http://sealparadise.github.io/tags/Java-EE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
-    
-    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
-    
-    <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java EE程序设计实验二</title>
-    <link href="http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-er/"/>
-    <id>http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-er/</id>
-    <published>2023-10-30T10:16:50.000Z</published>
-    <updated>2023-10-30T10:28:00.850Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验二&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验二&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验二&quot;&gt;&lt;/a&gt;Java</summary>
-        
-      
-    
-    
-    
-    <category term="大二下" scheme="http://sealparadise.github.io/categories/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
-    
-    
-    <category term="Java EE程序设计" scheme="http://sealparadise.github.io/tags/Java-EE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
-    
-    <category term="大二下" scheme="http://sealparadise.github.io/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B/"/>
-    
-    <category term="实验报告" scheme="http://sealparadise.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java EE程序设计实验一</title>
-    <link href="http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-yi/"/>
-    <id>http://sealparadise.github.io/2023/10/30/java-ee-cheng-xu-she-ji-shi-yan-yi/</id>
-    <published>2023-10-30T10:16:34.000Z</published>
-    <updated>2023-10-30T10:27:44.453Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java-EE程序设计实验一&quot;&gt;&lt;a href=&quot;#Java-EE程序设计实验一&quot; class=&quot;headerlink&quot; title=&quot;Java EE程序设计实验一&quot;&gt;&lt;/a&gt;Java</summary>
         
       
     
