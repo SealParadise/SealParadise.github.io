@@ -1849,9 +1849,9 @@
             
             <tag> 信息安全导论 </tag>
             
-            <tag> 用户指南 </tag>
-            
             <tag> 大三上 </tag>
+            
+            <tag> 用户指南 </tag>
             
             <tag> S-DES </tag>
             
@@ -1880,11 +1880,11 @@
             
             <tag> 信息安全导论 </tag>
             
+            <tag> 开发手册 </tag>
+            
             <tag> 大三上 </tag>
             
             <tag> S-DES </tag>
-            
-            <tag> 开发手册 </tag>
             
         </tags>
       
@@ -1944,9 +1944,9 @@
             
             <tag> S-AES </tag>
             
-            <tag> 大三上 </tag>
-            
             <tag> 开发手册 </tag>
+            
+            <tag> 大三上 </tag>
             
         </tags>
       
@@ -1975,9 +1975,9 @@
             
             <tag> S-AES </tag>
             
-            <tag> 用户指南 </tag>
-            
             <tag> 大三上 </tag>
+            
+            <tag> 用户指南 </tag>
             
         </tags>
       
