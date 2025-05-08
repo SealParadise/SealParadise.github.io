@@ -45,8 +45,6 @@
 
 
     
-        <link rel="stylesheet" type="text/css" href="/css/reward.css">
-    
 
 
 
@@ -484,7 +482,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/34.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -517,16 +515,16 @@
                                 <span class="chip bg-color">信息安全导论</span>
                             </a>
                         
-                            <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
-                                <span class="chip bg-color">开发手册</span>
-                            </a>
-                        
                             <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
                                 <span class="chip bg-color">大三上</span>
                             </a>
                         
                             <a href="/tags/S-DES/">
                                 <span class="chip bg-color">S-DES</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                                <span class="chip bg-color">开发手册</span>
                             </a>
                         
                     </div>
@@ -634,44 +632,44 @@
 <p>​	③将左移后的<code>keyLeft</code>和<code>keyRight</code>重新拼接成<code>subKeyB</code>，然后使用P8置换盒，从<code>subKeyB</code>中取出8位字符，生成k1；</p>
 <p>​	④再次对<code>keyLeft</code>和<code>keyRight</code>进行左移操作，得到新的<code>subKeyB</code>，然后再次使用P8置换盒，从<code>subKeyB</code>中取出8位字符，生成k2；</p>
 <p>​	⑤最后，将生成的k1和k2赋值给相应的变量。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void setK12(){ //由密钥获得k1 k2的方法
-    //使用P10和P8盒进行置换和压缩，生成两个8位的子密钥
-    String subKeyA = "";
-    String subKeyB = key;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setK12</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//由密钥获得k1 k2的方法</span>
+    <span class="token comment">//使用P10和P8盒进行置换和压缩，生成两个8位的子密钥</span>
+    <span class="token class-name">String</span> subKeyA <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> subKeyB <span class="token operator">=</span> key<span class="token punctuation">;</span>
 
-    for (int i = 1; i &lt;= 10; i++){//P10 Box 操作
-        //按照P10盒的顺序从密钥中取出对应的字符，拼接成新的字符串
-        subKeyA = subKeyA + subKeyB.charAt(P10.get(i) - 1);
-    }
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//P10 Box 操作</span>
+        <span class="token comment">//按照P10盒的顺序从密钥中取出对应的字符，拼接成新的字符串</span>
+        subKeyA <span class="token operator">=</span> subKeyA <span class="token operator">+</span> subKeyB<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //分割字符串 分别做leftshift
-    String keyLeft = leftShift(subKeyA.substring(0,5)); //将左半部分字符串左移一位
-    String keyRight = leftShift(subKeyA.substring(5)); //将右半部分字符串左移一位
-    subKeyB = keyLeft + keyRight; //拼接左右两部分字符串
+    <span class="token comment">//分割字符串 分别做leftshift</span>
+    <span class="token class-name">String</span> keyLeft <span class="token operator">=</span> <span class="token function">leftShift</span><span class="token punctuation">(</span>subKeyA<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将左半部分字符串左移一位</span>
+    <span class="token class-name">String</span> keyRight <span class="token operator">=</span> <span class="token function">leftShift</span><span class="token punctuation">(</span>subKeyA<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将右半部分字符串左移一位</span>
+    subKeyB <span class="token operator">=</span> keyLeft <span class="token operator">+</span> keyRight<span class="token punctuation">;</span> <span class="token comment">//拼接左右两部分字符串</span>
 
-    subKeyA = "";
+    subKeyA <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
 
-    for (int i = 1; i&lt;= 8; i++){//P8 Box for k1
-        //按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k1
-        subKeyA = subKeyA + subKeyB.charAt(P8.get(i) - 1);
-    }
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//P8 Box for k1</span>
+        <span class="token comment">//按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k1</span>
+        subKeyA <span class="token operator">=</span> subKeyA <span class="token operator">+</span> subKeyB<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    k1 = subKeyA; //设置k1
+    k1 <span class="token operator">=</span> subKeyA<span class="token punctuation">;</span> <span class="token comment">//设置k1</span>
 
-    subKeyA = "";
+    subKeyA <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
 
-    //分别做leftshift
-    keyLeft = leftShift(keyLeft); //将左半部分字符串再次左移一位
-    keyRight = leftShift(keyRight); //将右半部分字符串再次左移一位
-    subKeyB = keyLeft + keyRight; //拼接左右两部分字符串
+    <span class="token comment">//分别做leftshift</span>
+    keyLeft <span class="token operator">=</span> <span class="token function">leftShift</span><span class="token punctuation">(</span>keyLeft<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将左半部分字符串再次左移一位</span>
+    keyRight <span class="token operator">=</span> <span class="token function">leftShift</span><span class="token punctuation">(</span>keyRight<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//将右半部分字符串再次左移一位</span>
+    subKeyB <span class="token operator">=</span> keyLeft <span class="token operator">+</span> keyRight<span class="token punctuation">;</span> <span class="token comment">//拼接左右两部分字符串</span>
 
-    for (int i = 1; i&lt;= 8; i++){//P8 Box for k2
-        //按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k2
-        subKeyA = subKeyA + subKeyB.charAt(P8.get(i) - 1);;
-    }
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//P8 Box for k2</span>
+        <span class="token comment">//按照P8盒的顺序从拼接后的字符串中取出对应的字符，拼接成新的字符串，作为k2</span>
+        subKeyA <span class="token operator">=</span> subKeyA <span class="token operator">+</span> subKeyB<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    k2 = subKeyA; //设置k2
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    k2 <span class="token operator">=</span> subKeyA<span class="token punctuation">;</span> <span class="token comment">//设置k2</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -685,125 +683,125 @@
 <p>​	③构造函数<code>public sDES(String key, String original)</code>接受两个参数，分别是初始密钥<code>key</code>和原始文本<code>original</code>。在构造函数中，首先初始化了类的成员变量<code>key</code>和<code>original</code>；</p>
 <p>​	④随后，为各个置换盒和S-Box填充了预定义的映射关系；</p>
 <p>​	⑤最后，调用了<code>setK12()</code>方法，用于生成S-DES算法中的子密钥k1和k2。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public String original,key,k1,k2,result;
-HashMap&lt;Integer,Integer&gt; ipBox = new HashMap&lt;Integer,Integer&gt;();
-HashMap&lt;Integer,Integer&gt; ipFinalBox = new HashMap&lt;Integer,Integer&gt;();
-HashMap&lt;Integer,Integer&gt; P10 = new HashMap&lt;Integer,Integer&gt;();
-HashMap&lt;Integer,Integer&gt; P8 = new HashMap&lt;Integer,Integer&gt;();
-HashMap&lt;Integer,Integer&gt; epBox = new HashMap&lt;Integer,Integer&gt;();
-HashMap&lt;String,HashMap&lt;String,String&gt;&gt; sBox1 = new HashMap&lt;String,HashMap&lt;String,String&gt;&gt;();
-HashMap&lt;String,HashMap&lt;String,String&gt;&gt; sBox2 = new HashMap&lt;String,HashMap&lt;String,String&gt;&gt;();
-HashMap&lt;Integer,Integer&gt; spBox = new HashMap&lt;Integer,Integer&gt;();
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span> original<span class="token punctuation">,</span>key<span class="token punctuation">,</span>k1<span class="token punctuation">,</span>k2<span class="token punctuation">,</span>result<span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> ipBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> ipFinalBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token constant">P10</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token constant">P8</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> epBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">HashMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> sBox1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">HashMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">HashMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> sBox2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">HashMap</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> spBox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-public sDES(String key, String original){//初始化 密钥key 起始字符串original ipBox等转换盒
+<span class="token keyword">public</span> <span class="token function">sDES</span><span class="token punctuation">(</span><span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token class-name">String</span> original<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//初始化 密钥key 起始字符串original ipBox等转换盒</span>
 
-    this.key = key;
+    <span class="token keyword">this</span><span class="token punctuation">.</span>key <span class="token operator">=</span> key<span class="token punctuation">;</span>
 
-    this.original = original;
+    <span class="token keyword">this</span><span class="token punctuation">.</span>original <span class="token operator">=</span> original<span class="token punctuation">;</span>
 
-    ipBox.put(1,2);
-    ipBox.put(2,6);
-    ipBox.put(3,3);
-    ipBox.put(4,1);
-    ipBox.put(5,4);
-    ipBox.put(6,8);
-    ipBox.put(7,5);
-    ipBox.put(8,7);
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    ipFinalBox.put(1,4);
-    ipFinalBox.put(2,1);
-    ipFinalBox.put(3,3);
-    ipFinalBox.put(4,5);
-    ipFinalBox.put(5,7);
-    ipFinalBox.put(6,2);
-    ipFinalBox.put(7,8);
-    ipFinalBox.put(8,6);
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ipFinalBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    P10.put(1,3);
-    P10.put(2,5);
-    P10.put(3,2);
-    P10.put(4,7);
-    P10.put(5,4);
-    P10.put(6,10);
-    P10.put(7,1);
-    P10.put(8,9);
-    P10.put(9,8);
-    P10.put(10,6);
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P10</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    P8.put(1,6);
-    P8.put(2,3);
-    P8.put(3,7);
-    P8.put(4,4);
-    P8.put(5,8);
-    P8.put(6,5);
-    P8.put(7,10);
-    P8.put(8,9);
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token constant">P8</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
-    epBox.put(1,4);
-    epBox.put(2,1);
-    epBox.put(3,2);
-    epBox.put(4,3);
-    epBox.put(5,2);
-    epBox.put(6,3);
-    epBox.put(7,4);
-    epBox.put(8,1);
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    epBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    spBox.put(1,2);
-    spBox.put(2,4);
-    spBox.put(3,3);
-    spBox.put(4,1);
+    spBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    spBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    spBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    spBox<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox1.put("00",new HashMap&lt;String, String&gt;());
-    sBox1.get("00").put("00","01");
-    sBox1.get("00").put("01","00");
-    sBox1.get("00").put("10","11");
-    sBox1.get("00").put("11","10");
+    sBox1<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox1.put("01",new HashMap&lt;String, String&gt;());
-    sBox1.get("01").put("00","11");
-    sBox1.get("01").put("01","10");
-    sBox1.get("01").put("10","01");
-    sBox1.get("01").put("11","00");
+    sBox1<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox1.put("10",new HashMap&lt;String, String&gt;());
-    sBox1.get("10").put("00","00");
-    sBox1.get("10").put("01","10");
-    sBox1.get("10").put("10","01");
-    sBox1.get("10").put("11","11");
+    sBox1<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox1.put("11",new HashMap&lt;String, String&gt;());
-    sBox1.get("11").put("00","11");
-    sBox1.get("11").put("01","01");
-    sBox1.get("11").put("10","00");
-    sBox1.get("11").put("11","10");
+    sBox1<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox2.put("00",new HashMap&lt;String, String&gt;());
-    sBox2.get("00").put("00","00");
-    sBox2.get("00").put("01","01");
-    sBox2.get("00").put("10","10");
-    sBox2.get("00").put("11","11");
+    sBox2<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox2.put("01",new HashMap&lt;String, String&gt;());
-    sBox2.get("01").put("00","10");
-    sBox2.get("01").put("01","11");
-    sBox2.get("01").put("10","01");
-    sBox2.get("01").put("11","00");
+    sBox2<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox2.put("10",new HashMap&lt;String, String&gt;());
-    sBox2.get("10").put("00","11");
-    sBox2.get("10").put("01","00");
-    sBox2.get("10").put("10","01");
-    sBox2.get("10").put("11","10");
+    sBox2<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    sBox2.put("11",new HashMap&lt;String, String&gt;());
-    sBox2.get("11").put("00","10");
-    sBox2.get("11").put("01","01");
-    sBox2.get("11").put("10","00");
-    sBox2.get("11").put("11","11");
+    sBox2<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"00"</span><span class="token punctuation">,</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"01"</span><span class="token punctuation">,</span><span class="token string">"01"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span><span class="token string">"00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"11"</span><span class="token punctuation">,</span><span class="token string">"11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    setK12();
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token function">setK12</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -813,119 +811,119 @@ public sDES(String key, String original){//初始化 密钥key 起始字符串or
 <p>​	④<code>plus(String a, String b)</code> 方法实现二进制字符串的异或运算；</p>
 <p>​	⑤<code>F(String input, String k12)</code> 方法执行S-DES算法中的F操作，包括扩展置换（EP）、S盒替代和置换（SP）；</p>
 <p>​	⑥<code>DES(String input, String k12)</code> 方法执行S-DES算法中的DES操作，包括将输入的字符串分为左右两部分，与k12进行F操作，然后将左半部分与F操作的结果进行异或运算。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public String leftShift(String halfKey){ //字符串左移一位的方法
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">leftShift</span><span class="token punctuation">(</span><span class="token class-name">String</span> halfKey<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//字符串左移一位的方法</span>
 
-    String str1 = halfKey.substring(1); //截取第二个字符到最后一个字符
+    <span class="token class-name">String</span> str1 <span class="token operator">=</span> halfKey<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//截取第二个字符到最后一个字符</span>
 
-    String str2 = halfKey.substring(0,1);//截取第一个字符
+    <span class="token class-name">String</span> str2 <span class="token operator">=</span> halfKey<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//截取第一个字符</span>
 
-    return str1 + str2;//返回拼接字符串
-}
-public String IP(String original){//将输入的字符串按照IP置换表进行置换
-    String res = "";
-    for (int i = 1; i &lt;= 8; i++){
-        res = res + original.charAt(ipBox.get(i) - 1);
-    }
+    <span class="token keyword">return</span> str1 <span class="token operator">+</span> str2<span class="token punctuation">;</span><span class="token comment">//返回拼接字符串</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">IP</span><span class="token punctuation">(</span><span class="token class-name">String</span> original<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//将输入的字符串按照IP置换表进行置换</span>
+    <span class="token class-name">String</span> res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        res <span class="token operator">=</span> res <span class="token operator">+</span> original<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>ipBox<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    return res;
-}
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-public String ipFinal(String fin){//将输入的字符串按照IP逆置换表进行置换
-    String res = "";
-    for (int i = 1; i &lt;= 8; i++){
-        res = res + fin.charAt(ipFinalBox.get(i) - 1);
-    }
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">ipFinal</span><span class="token punctuation">(</span><span class="token class-name">String</span> fin<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//将输入的字符串按照IP逆置换表进行置换</span>
+    <span class="token class-name">String</span> res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        res <span class="token operator">=</span> res <span class="token operator">+</span> fin<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>ipFinalBox<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    return res;
-}
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-public String plus(String a ,String b){ //异或操作 Out = a 异或 b
-    //对两个二进制字符串进行异或操作
-    String res = "";
-    for (int i = 0; i &lt; a.length(); i++){
-        if (a.charAt(i) == b.charAt(i)){
-            res = res + "0";
-        }else{
-            res = res + "1";
-        }
-    }
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">plus</span><span class="token punctuation">(</span><span class="token class-name">String</span> a <span class="token punctuation">,</span><span class="token class-name">String</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//异或操作 Out = a 异或 b</span>
+    <span class="token comment">//对两个二进制字符串进行异或操作</span>
+    <span class="token class-name">String</span> res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> a<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> b<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">"1"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    return res;
-}
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-public String F(String input,String k12){//F操作 Out = In.F(k_In)
-    //将输入的字符串按照EP置换表进行置换
-    String output = "";
-    String tem = "";
-    for (int i = 1; i &lt;= 8; i++){// EP 操作
-        tem = tem + input.charAt(epBox.get(i) - 1);
-    }
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">,</span><span class="token class-name">String</span> k12<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//F操作 Out = In.F(k_In)</span>
+    <span class="token comment">//将输入的字符串按照EP置换表进行置换</span>
+    <span class="token class-name">String</span> output <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> tem <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">// EP 操作</span>
+        tem <span class="token operator">=</span> tem <span class="token operator">+</span> input<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>epBox<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //将EP置换后的字符串与k12进行异或操作
-    tem = plus(tem,k12);
+    <span class="token comment">//将EP置换后的字符串与k12进行异或操作</span>
+    tem <span class="token operator">=</span> <span class="token function">plus</span><span class="token punctuation">(</span>tem<span class="token punctuation">,</span>k12<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //分割字符串 获得S box的四个下标
-    char[] index1 = {tem.charAt(0),tem.charAt(3)};
-    char[] index2 = {tem.charAt(4),tem.charAt(7)};
+    <span class="token comment">//分割字符串 获得S box的四个下标</span>
+    <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> index1 <span class="token operator">=</span> <span class="token punctuation">{</span>tem<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>tem<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> index2 <span class="token operator">=</span> <span class="token punctuation">{</span>tem<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>tem<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    //将S box操作后的结果拼接起来
-    tem = sBox1.get(new String(index1)).get(tem.substring(1,3)) + sBox2.get(new String(index2)).get(tem.substring(5,7));
+    <span class="token comment">//将S box操作后的结果拼接起来</span>
+    tem <span class="token operator">=</span> sBox1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>index1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> sBox2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>index2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将S box操作后的结果按照SP置换表进行置换
-    for (int i = 1; i &lt;= 4; i++){
-        output = output + tem.charAt(spBox.get(i) - 1);
-    }
+    <span class="token comment">//将S box操作后的结果按照SP置换表进行置换</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        output <span class="token operator">=</span> output <span class="token operator">+</span> tem<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>spBox<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    return output;
-}
+    <span class="token keyword">return</span> output<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-public String DES(String input, String k12){ //DES操作
-    //将输入的字符串分为左右两部分
-    String Left = input.substring(0,4);
-    String Right = input.substring(4);
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">DES</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">,</span> <span class="token class-name">String</span> k12<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//DES操作</span>
+    <span class="token comment">//将输入的字符串分为左右两部分</span>
+    <span class="token class-name">String</span> <span class="token class-name">Left</span> <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> <span class="token class-name">Right</span> <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将右半部分字符串与k12进行F操作
-    String fTem = F(Right,k12);
+    <span class="token comment">//将右半部分字符串与k12进行F操作</span>
+    <span class="token class-name">String</span> fTem <span class="token operator">=</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token class-name">Right</span><span class="token punctuation">,</span>k12<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将左半部分字符串与F操作后的结果进行异或操作
-    Left = plus(Left, fTem);
+    <span class="token comment">//将左半部分字符串与F操作后的结果进行异或操作</span>
+    <span class="token class-name">Left</span> <span class="token operator">=</span> <span class="token function">plus</span><span class="token punctuation">(</span><span class="token class-name">Left</span><span class="token punctuation">,</span> fTem<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return Right + Left;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">return</span> <span class="token class-name">Right</span> <span class="token operator">+</span> <span class="token class-name">Left</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h4 id="4-2-4-加密解密方法"><a href="#4-2-4-加密解密方法" class="headerlink" title="4.2.4 加密解密方法"></a>4.2.4 加密解密方法</h4><p>​	①<code>enCode()</code> 方法用于执行S-DES算法的加密操作，包括按照IP置换表置换、两轮DES操作、字符串前后交换和IP逆置换；</p>
 <p>​	②<code>deCode()</code> 方法用于执行S-DES算法的解密操作，也包括按照IP置换表置换、两轮DES操作、字符串前后交换和IP逆置换。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public void enCode(){ //加密方法 Effect = 设置this.result 为original的加密结果
-    //将输入的字符串按照IP置换表进行置换
-    String tem = IP(original);
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">enCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//加密方法 Effect = 设置this.result 为original的加密结果</span>
+    <span class="token comment">//将输入的字符串按照IP置换表进行置换</span>
+    <span class="token class-name">String</span> tem <span class="token operator">=</span> <span class="token function">IP</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将置换后的字符串分别与k1和k2进行DES操作
-    tem = DES(tem,k1);
-    tem = DES(tem,k2);
+    <span class="token comment">//将置换后的字符串分别与k1和k2进行DES操作</span>
+    tem <span class="token operator">=</span> <span class="token function">DES</span><span class="token punctuation">(</span>tem<span class="token punctuation">,</span>k1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tem <span class="token operator">=</span> <span class="token function">DES</span><span class="token punctuation">(</span>tem<span class="token punctuation">,</span>k2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将DES操作后的字符串前后交换
-    tem = tem.substring(4) + tem.substring(0,4);
+    <span class="token comment">//将DES操作后的字符串前后交换</span>
+    tem <span class="token operator">=</span> tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将交换后的字符串按照IP逆置换表进行置换
-    result = ipFinal(tem);
-}
+    <span class="token comment">//将交换后的字符串按照IP逆置换表进行置换</span>
+    result <span class="token operator">=</span> <span class="token function">ipFinal</span><span class="token punctuation">(</span>tem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-public void deCode(){ //解密方法 Effect = 设置this.result 为original的解密结果
-    //将输入的字符串按照IP置换表进行置换
-    String tem = IP(original);
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//解密方法 Effect = 设置this.result 为original的解密结果</span>
+    <span class="token comment">//将输入的字符串按照IP置换表进行置换</span>
+    <span class="token class-name">String</span> tem <span class="token operator">=</span> <span class="token function">IP</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将置换后的字符串分别与k2和k1进行DES操作
-    tem = DES(tem,k2);
-    tem = DES(tem,k1);
+    <span class="token comment">//将置换后的字符串分别与k2和k1进行DES操作</span>
+    tem <span class="token operator">=</span> <span class="token function">DES</span><span class="token punctuation">(</span>tem<span class="token punctuation">,</span>k2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tem <span class="token operator">=</span> <span class="token function">DES</span><span class="token punctuation">(</span>tem<span class="token punctuation">,</span>k1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将DES操作后的字符串前后交换
-    tem = tem.substring(4) + tem.substring(0,4);
+    <span class="token comment">//将DES操作后的字符串前后交换</span>
+    tem <span class="token operator">=</span> tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> tem<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //将交换后的字符串按照IP逆置换表进行置换
-    result = ipFinal(tem);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment">//将交换后的字符串按照IP逆置换表进行置换</span>
+    result <span class="token operator">=</span> <span class="token function">ipFinal</span><span class="token punctuation">(</span>tem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -936,46 +934,46 @@ public void deCode(){ //解密方法 Effect = 设置this.result 为original的�
 <p>​	c)通过<code>getController()</code>方法获取与这两个FXML文件关联的Controller对象，即<code>desController</code>和<code>violentController</code>，这些Controller类负责管理界面的行为和交互;</p>
 <p>​	d)创建一个Stage对象，用于表示主界面，并设置其标题为”S-DES”，然后将主界面的根节点设置为加载的<code>des.fxml</code>文件的根节点，最后显示主界面;</p>
 <p>​	e)创建另一个Stage对象，用于表示”Violent Decode”界面，并设置其标题为”Violent Decode”，然后将其根节点设置为加载的<code>violent.fxml</code>文件的根节点，最后显示”Violent Decode”界面。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>application<span class="token punctuation">.</span></span><span class="token class-name">Application</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span></span><span class="token class-name">FXMLLoader</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span></span><span class="token class-name">Parent</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span></span><span class="token class-name">Scene</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>stage<span class="token punctuation">.</span></span><span class="token class-name">Stage</span></span><span class="token punctuation">;</span>
 
-import java.io.IOException;
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span>
 
-public class mainApp extends Application {
+<span class="token keyword">public</span> <span class="token keyword">class</span> mainApp <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">launch</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {// javafx + fxml 获取ui
-        //加载fxml文件
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/des.fxml"));
-        FXMLLoader violentLoader = new FXMLLoader(getClass().getResource("/violent.fxml"));
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token class-name">Stage</span> primaryStage<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span><span class="token comment">// javafx + fxml 获取ui</span>
+        <span class="token comment">//加载fxml文件</span>
+        <span class="token class-name">FXMLLoader</span> mainLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/des.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">FXMLLoader</span> violentLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/violent.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //加载父结点
-        Parent root = mainLoader.load();
-        Parent parent = violentLoader.load();
+        <span class="token comment">//加载父结点</span>
+        <span class="token class-name">Parent</span> root <span class="token operator">=</span> mainLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Parent</span> parent <span class="token operator">=</span> violentLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //获取Controller
-        desController controller = mainLoader.getController();
-        violentController violentController = violentLoader.getController();
+        <span class="token comment">//获取Controller</span>
+        desController controller <span class="token operator">=</span> mainLoader<span class="token punctuation">.</span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        violentController violentController <span class="token operator">=</span> violentLoader<span class="token punctuation">.</span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //显示Stage设置
-        primaryStage.setTitle("S-DES");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        <span class="token comment">//显示Stage设置</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"S-DES"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Stage vioStage = new Stage();
-        vioStage.setTitle("Violent Decode");
-        vioStage.setScene(new Scene(parent));
-        vioStage.show();
+        <span class="token class-name">Stage</span> vioStage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vioStage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Violent Decode"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vioStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vioStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -988,146 +986,146 @@ public class mainApp extends Application {
 <p>​	③<code>void Decode(ActionEvent event)</code> 方法是解密按钮的事件处理方法，与加密按钮方法类似，但是执行的是S-DES解密操作，并将解密结果显示在<code>decodeRes</code>文本框中;</p>
 <p>​	④<code>void randomKey(ActionEvent event)</code> 方法用于生成随机的10位密钥，并将其显示在<code>keyField</code>文本框中;</p>
 <p>​	⑤<code>void initialize()</code> 方法是JavaFX的初始化方法，在界面加载后自动调用。它设置<code>encodeRes</code>和<code>decodeRes</code>文本框为不可编辑状态，以防止用户手动输入。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">import java.net.URL;
-import java.util.Random;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">URL</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ResourceBundle</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">ActionEvent</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span></span><span class="token class-name">FXML</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">CheckBox</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">TextField</span></span><span class="token punctuation">;</span>
 
-public class desController {//UI controller
+<span class="token keyword">public</span> <span class="token keyword">class</span> desController <span class="token punctuation">{</span><span class="token comment">//UI controller</span>
 
-    @FXML
-    private ResourceBundle resources;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">ResourceBundle</span> resources<span class="token punctuation">;</span>
 
-    @FXML
-    private URL location;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">URL</span> location<span class="token punctuation">;</span>
 
-    @FXML
-    private CheckBox checkBox;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">CheckBox</span> checkBox<span class="token punctuation">;</span>
 
-    @FXML
-    private TextField keyField;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextField</span> keyField<span class="token punctuation">;</span>
 
-    @FXML
-    private TextField decodeSou;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextField</span> decodeSou<span class="token punctuation">;</span>
 
-    @FXML
-    TextField decodeRes;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token class-name">TextField</span> decodeRes<span class="token punctuation">;</span>
 
-    @FXML
-    private TextField encodeSou;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextField</span> encodeSou<span class="token punctuation">;</span>
 
-    @FXML
-    TextField encodeRes;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token class-name">TextField</span> encodeRes<span class="token punctuation">;</span>
 
-    @FXML
-    void Encode(ActionEvent event) {//加密按钮方法
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token class-name">Encode</span><span class="token punctuation">(</span><span class="token class-name">ActionEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//加密按钮方法</span>
 
-        if ((keyField.getText().length() == 10 &amp;&amp; encodeSou.getText().length() == 8 ) || checkBox.isSelected()){//检测输入格式
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> encodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">8</span> <span class="token punctuation">)</span> <span class="token operator">||</span> checkBox<span class="token punctuation">.</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//检测输入格式</span>
 
-            if (checkBox.isSelected()){//检测输入类型 二进制 or ascii
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>checkBox<span class="token punctuation">.</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//检测输入类型 二进制 or ascii</span>
 
-                String res = "";
-                //逐字符读取
-                for (int i = 0; i &lt; encodeSou.getText().length(); i++){
-                    String tem = Integer.toBinaryString((int) encodeSou.getText().charAt(i));
+                <span class="token class-name">String</span> res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+                <span class="token comment">//逐字符读取</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> encodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token class-name">String</span> tem <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> encodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-                    //二进制补0
-                    while (tem.length() &lt; 8) {
-                        tem = "0" + tem;
-                    }
+                    <span class="token comment">//二进制补0</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>tem<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        tem <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> tem<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
 
-                    //读取输入并初始化编码器
-                    sDES encoder = new sDES(keyField.getText(),tem);
-                    encoder.enCode();//加密操作
+                    <span class="token comment">//读取输入并初始化编码器</span>
+                    sDES encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">sDES</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>tem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    encoder<span class="token punctuation">.</span><span class="token function">enCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//加密操作</span>
 
-                    //将加密结果转化成ascii字符加入输出集
-                    res = res + (char)Integer.parseInt(encoder.result,2);
-                }
-                //显示输出集
-                encodeRes.setText(res);
-            }else {
-                //读取输入并初始化编码器
-                sDES encoder = new sDES(keyField.getText(), encodeSou.getText());
-                encoder.enCode();//加密操作
+                    <span class="token comment">//将加密结果转化成ascii字符加入输出集</span>
+                    res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>encoder<span class="token punctuation">.</span>result<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment">//显示输出集</span>
+                encodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment">//读取输入并初始化编码器</span>
+                sDES encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">sDES</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> encodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                encoder<span class="token punctuation">.</span><span class="token function">enCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//加密操作</span>
 
-                //显示输出集
-                encodeRes.setText(encoder.result);
-            }
-        }else {
-            //错误输入反馈
-            encodeRes.setText("明文/密钥数量不规范");
-        }
-    }
+                <span class="token comment">//显示输出集</span>
+                encodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>encoder<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">//错误输入反馈</span>
+            encodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"明文/密钥数量不规范"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    @FXML
-    void Decode(ActionEvent event) {//解密按钮方法
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token class-name">Decode</span><span class="token punctuation">(</span><span class="token class-name">ActionEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//解密按钮方法</span>
 
-        if ((keyField.getText().length() == 10 &amp;&amp; decodeSou.getText().length() == 8) || checkBox.isSelected()){//检测输入格式
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">10</span> <span class="token operator">&amp;&amp;</span> decodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">||</span> checkBox<span class="token punctuation">.</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//检测输入格式</span>
 
-            if (checkBox.isSelected()){//检测输入类型 二进制 or ascii
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>checkBox<span class="token punctuation">.</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//检测输入类型 二进制 or ascii</span>
 
-                String res = "";
-                //逐字符读取
-                for (int i = 0; i &lt; decodeSou.getText().length(); i++){
+                <span class="token class-name">String</span> res <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+                <span class="token comment">//逐字符读取</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> decodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
 
-                    String tem = Integer.toBinaryString((int) decodeSou.getText().charAt(i));
-                    //二进制补0
-                    while (tem.length() &lt; 8) {
-                        tem = "0" + tem;
-                    }
+                    <span class="token class-name">String</span> tem <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> decodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">//二进制补0</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>tem<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        tem <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> tem<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
 
-                    //读取输入并初始化解码器
-                    sDES decoder = new sDES(keyField.getText(),tem);
-                    decoder.deCode();//解码操作
+                    <span class="token comment">//读取输入并初始化解码器</span>
+                    sDES decoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">sDES</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>tem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    decoder<span class="token punctuation">.</span><span class="token function">deCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//解码操作</span>
 
-                    //将解密结果转化成ascii字符加入输出集
-                    res = res + (char)Integer.parseInt(decoder.result,2);
-                }
-                //显示输出集
-                decodeRes.setText(res);
+                    <span class="token comment">//将解密结果转化成ascii字符加入输出集</span>
+                    res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>decoder<span class="token punctuation">.</span>result<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment">//显示输出集</span>
+                decodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            }else {
-                //读取输入并初始化解码器
-                sDES decoder = new sDES(keyField.getText(), decodeSou.getText());
-                decoder.deCode();//解码操作
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment">//读取输入并初始化解码器</span>
+                sDES decoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">sDES</span><span class="token punctuation">(</span>keyField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> decodeSou<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                decoder<span class="token punctuation">.</span><span class="token function">deCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//解码操作</span>
 
-                //显示输出集
-                decodeRes.setText(decoder.result);
-            }
-        }else {
-            //错误输入反馈
-            decodeRes.setText("明文/密钥数量不规范");
-        }
-    }
+                <span class="token comment">//显示输出集</span>
+                decodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>decoder<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">//错误输入反馈</span>
+            decodeRes<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"明文/密钥数量不规范"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    @FXML
-    void randomKey(ActionEvent event) {//生成随机密钥并显示在keyField中
-        //生成0-1023间的随机数
-        Random random = new Random();
-        int num = random.nextInt(1023);
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token function">randomKey</span><span class="token punctuation">(</span><span class="token class-name">ActionEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//生成随机密钥并显示在keyField中</span>
+        <span class="token comment">//生成0-1023间的随机数</span>
+        <span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> num <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //将随机数转为二进制
-        String binary = Integer.toBinaryString(num);
+        <span class="token comment">//将随机数转为二进制</span>
+        <span class="token class-name">String</span> binary <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //空位补0
-        while (binary.length() &lt; 10) {
-            binary = "0" + binary;
-        }
+        <span class="token comment">//空位补0</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>binary<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            binary <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> binary<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        //显示密钥
-        keyField.setText(binary);
-    }
+        <span class="token comment">//显示密钥</span>
+        keyField<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>binary<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    @FXML
-    void initialize() {//初始化UI界面 设置encode_res框为不可编辑
-        encodeRes.setEditable(false);
-        decodeRes.setEditable(false);
-    }
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//初始化UI界面 设置encode_res框为不可编辑</span>
+        encodeRes<span class="token punctuation">.</span><span class="token function">setEditable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        decodeRes<span class="token punctuation">.</span><span class="token function">setEditable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1143,111 +1141,111 @@ public class desController {//UI controller
 <p>​	④<code>initialize()</code> 方法是JavaFX的初始化方法，在界面加载后自动调用。它执行以下操作：</p>
 <p>​		a)输出创建窗口的时间戳;</p>
 <p>​		b)设置密钥显示区域 <code>keyArea</code> 为不可编辑状态，以防止用户手动输入。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">ActionEvent</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span></span><span class="token class-name">FXML</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">TextArea</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span></span><span class="token class-name">TextField</span></span><span class="token punctuation">;</span>
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">SimpleDateFormat</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span></span><span class="token punctuation">;</span>
 
-public class violentController {
+<span class="token keyword">public</span> <span class="token keyword">class</span> violentController <span class="token punctuation">{</span>
 
-    class thread1 extends Thread{//线程1 查找一半密钥空间的线程 适用于双线程破解
-        public void run(){
-            Decode(0,511,"线程1： ");//暴力查找0-511中的密钥
-        }
-    }
+    <span class="token keyword">class</span> thread1 <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span><span class="token comment">//线程1 查找一半密钥空间的线程 适用于双线程破解</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Decode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">511</span><span class="token punctuation">,</span><span class="token string">"线程1： "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//暴力查找0-511中的密钥</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    class thread2 extends Thread{//线程2 查找一半密钥空间的线程
-        public void run(){
-            Decode(512,1023,"线程2： ");//暴力查找512-1023中的密钥
-        }
-    }
+    <span class="token keyword">class</span> thread2 <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span><span class="token comment">//线程2 查找一半密钥空间的线程</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Decode</span><span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span><span class="token number">1023</span><span class="token punctuation">,</span><span class="token string">"线程2： "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//暴力查找512-1023中的密钥</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    class thread3 extends Thread{//线程三 查找全部密钥空间的线程 适用于单线程破解
-        public void run(){
-            Decode(0,1023,"线程3： ");//暴力查找0-1023中的密钥
-        }
-    }
+    <span class="token keyword">class</span> thread3 <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span><span class="token comment">//线程三 查找全部密钥空间的线程 适用于单线程破解</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Decode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1023</span><span class="token punctuation">,</span><span class="token string">"线程3： "</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//暴力查找0-1023中的密钥</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    public void Decode(int begin, int end,String th){//密钥解密程序
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token class-name">Decode</span><span class="token punctuation">(</span><span class="token keyword">int</span> begin<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span><span class="token class-name">String</span> th<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//密钥解密程序</span>
 
-        HashMap&lt;Integer,String&gt; hash = new HashMap&lt;Integer,String&gt;();//创建存储密钥的哈希表
-        int amount = 0;//标记已查到的密钥数量
+        <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> hash <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//创建存储密钥的哈希表</span>
+        <span class="token keyword">int</span> amount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//标记已查到的密钥数量</span>
 
-        for (int i = begin; i &lt;= end; i++){//在指定的密钥空间遍历
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> end<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//在指定的密钥空间遍历</span>
 
-            String key = Integer.toBinaryString(i);//将密钥从十进制转二进制
+            <span class="token class-name">String</span> key <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toBinaryString</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将密钥从十进制转二进制</span>
 
-            //补0操作
-            while (key.length() &lt; 10) {
-                key = "0" + key;
-            }
+            <span class="token comment">//补0操作</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>key<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                key <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> key<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-            //用遍历密钥同原文加密
-            sDES encoder = new sDES(key,originalText.getText());
-            encoder.enCode();
+            <span class="token comment">//用遍历密钥同原文加密</span>
+            sDES encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">sDES</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span>originalText<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            encoder<span class="token punctuation">.</span><span class="token function">enCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            if (encoder.result.equals(secretText.getText())){//对照加密后原文是否与密文一致
-                //时间戳返回每次找到的时间
-                Long timeStamp = System.currentTimeMillis();
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:ms");
-                String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>encoder<span class="token punctuation">.</span>result<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>secretText<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//对照加密后原文是否与密文一致</span>
+                <span class="token comment">//时间戳返回每次找到的时间</span>
+                <span class="token class-name">Long</span> timeStamp <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">SimpleDateFormat</span> sdf<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss:ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">String</span> sd <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token class-name">Long</span><span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>timeStamp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-                //存储已查到的密钥
-                hash.put(amount,key);
-                amount++;//已查明密钥数量+1
+                <span class="token comment">//存储已查到的密钥</span>
+                hash<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>amount<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                amount<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//已查明密钥数量+1</span>
 
-                //输出时间戳
-                System.out.println(th + "找到第"+amount+"个的时间：" + sd);
-            }
-        }
-        for (int i = 0; i &lt; amount; i++){//输出密钥集
-            keyArea.appendText("\n" + hash.get(i) );
-        }
-    }
+                <span class="token comment">//输出时间戳</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>th <span class="token operator">+</span> <span class="token string">"找到第"</span><span class="token operator">+</span>amount<span class="token operator">+</span><span class="token string">"个的时间："</span> <span class="token operator">+</span> sd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> amount<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//输出密钥集</span>
+            keyArea<span class="token punctuation">.</span><span class="token function">appendText</span><span class="token punctuation">(</span><span class="token string">"\n"</span> <span class="token operator">+</span> hash<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    @FXML
-    private TextField originalText;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextField</span> originalText<span class="token punctuation">;</span>
 
-    @FXML
-    private TextField secretText;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextField</span> secretText<span class="token punctuation">;</span>
 
-    @FXML
-    private TextArea keyArea;
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">TextArea</span> keyArea<span class="token punctuation">;</span>
 
-    @FXML
-    void violentDecode(ActionEvent event) {
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token function">violentDecode</span><span class="token punctuation">(</span><span class="token class-name">ActionEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        keyArea.clear();
-        //双线程执行
-        thread1 thread1 = new thread1();
-        thread2 thread2 = new thread2();
+        keyArea<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//双线程执行</span>
+        thread1 thread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">thread1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread2 thread2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">thread2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        thread1.start();
-        thread2.start();
+        thread1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        /*
+        <span class="token comment">/*
         //单线程执行
         thread3 thread3 = new thread3();
         thread3.start();
-        */
-    }
+        */</span>
+    <span class="token punctuation">}</span>
 
-    @FXML
-    void initialize() {
-        //时间戳返回创建窗口的时间
-        Long timeStamp = System.currentTimeMillis();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:ms");
-        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
-        System.out.println("创建窗口时间：" + sd);
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//时间戳返回创建窗口的时间</span>
+        <span class="token class-name">Long</span> timeStamp <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">SimpleDateFormat</span> sdf<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss:ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> sd <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token class-name">Long</span><span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>timeStamp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"创建窗口时间："</span> <span class="token operator">+</span> sd<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        keyArea.setEditable(false);//初始化设置密钥显示区域不可编辑
-    }
+        keyArea<span class="token punctuation">.</span><span class="token function">setEditable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//初始化设置密钥显示区域不可编辑</span>
+    <span class="token punctuation">}</span>
 
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1723,16 +1721,16 @@ public class violentController {
                                     <span class="chip bg-color">信息安全导论</span>
                                 </a>
                             
-                                <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
-                                    <span class="chip bg-color">开发手册</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
                                     <span class="chip bg-color">大三上</span>
                                 </a>
                             
                                 <a href="/tags/S-DES/">
                                     <span class="chip bg-color">S-DES</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+                                    <span class="chip bg-color">开发手册</span>
                                 </a>
                             
                         </div>
@@ -1753,39 +1751,6 @@ public class violentController {
 
                 </div>
             </div>
-            
-                <div id="reward">
-    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
-
-    <!-- Modal Structure -->
-    <div id="rewardModal" class="modal">
-        <div class="modal-content">
-            <a class="close modal-close"><i class="fas fa-times"></i></a>
-            <h4 class="reward-title">双腿交替向前，总会抵达终点</h4>
-            <div class="reward-content">
-                <div class="reward-tabs">
-                    <ul class="tabs row">
-                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
-                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
-                    </ul>
-                    <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
-                    </div>
-                    <div id="wechat">
-                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(function () {
-        $('.tabs').tabs();
-    });
-</script>
-
             
         </div>
     </div>
@@ -2142,7 +2107,7 @@ new Valine({
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="S-DES用户指南">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="S-DES用户指南">
                         
                         <span class="card-title">S-DES用户指南</span>
                     </div>
@@ -2176,12 +2141,12 @@ new Valine({
                         <span class="chip bg-color">信息安全导论</span>
                     </a>
                     
-                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
-                        <span class="chip bg-color">大三上</span>
-                    </a>
-                    
                     <a href="/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/">
                         <span class="chip bg-color">用户指南</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E4%B8%89%E4%B8%8A/">
+                        <span class="chip bg-color">大三上</span>
                     </a>
                     
                     <a href="/tags/S-DES/">
@@ -2203,7 +2168,7 @@ new Valine({
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="信息安全导论S-DES作业">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="信息安全导论S-DES作业">
                         
                         <span class="card-title">信息安全导论S-DES作业</span>
                     </div>
@@ -2374,60 +2339,6 @@ new Valine({
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="/libs/aplayer/Meting.min.js"></script>
-
     
 
     <div class="container row center-align"
@@ -2691,8 +2602,6 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
     
     
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
