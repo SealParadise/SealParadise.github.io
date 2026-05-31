@@ -1,1 +1,78 @@
 /* Here is your custom css styles. */
+
+.lazy-pdf-card {
+    margin: 1.6rem 0;
+    padding: 1.2rem;
+    border: 1px solid rgba(44, 62, 80, 0.14);
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.lazy-pdf-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #2f3a45;
+    font-weight: 600;
+}
+
+.lazy-pdf-meta .fa-file-pdf {
+    color: #c62828;
+}
+
+.lazy-pdf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.lazy-pdf-actions .theme-btn {
+    margin: 0;
+}
+
+.lazy-pdf-load {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+.lazy-pdf-viewer {
+    margin-top: 1rem;
+}
+
+.lazy-pdf-viewer embed,
+.lazy-pdf-viewer iframe {
+    display: block;
+    width: 100%;
+    min-height: 550px;
+    border: 1px solid rgba(44, 62, 80, 0.16);
+    border-radius: 6px;
+    background: #f7f9fb;
+}
+
+body.DarkMode .lazy-pdf-card {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: #1f1f1f;
+}
+
+body.DarkMode .lazy-pdf-meta {
+    color: #e6e6e6;
+}
+
+body.DarkMode .lazy-pdf-viewer embed,
+body.DarkMode .lazy-pdf-viewer iframe {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: #151515;
+}
+
+@media only screen and (max-width: 600px) {
+    .lazy-pdf-card {
+        padding: 1rem;
+    }
+
+    .lazy-pdf-viewer embed,
+    .lazy-pdf-viewer iframe {
+        min-height: 420px;
+    }
+}

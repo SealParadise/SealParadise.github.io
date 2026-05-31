@@ -116,6 +116,58 @@ $(function () {
     };
     articleInit();
 
+    let lazyPdfInit = function () {
+        $('.lazy-pdf-load').on('click', function () {
+            let $button = $(this);
+            let $card = $button.closest('.lazy-pdf-card');
+            let $viewer = $card.find('.lazy-pdf-viewer').first();
+
+            if ($card.hasClass('loaded')) {
+                let isHidden = $viewer.attr('hidden') !== undefined;
+                if (isHidden) {
+                    $viewer.removeAttr('hidden');
+                    $button.text('收起 PDF 预览').attr('aria-expanded', 'true');
+                } else {
+                    $viewer.attr('hidden', 'hidden');
+                    $button.text('展开 PDF 预览').attr('aria-expanded', 'false');
+                }
+                return;
+            }
+
+            let src = $card.attr('data-pdf-src');
+            let type = $card.attr('data-pdf-type');
+            let $preview;
+
+            if (type === 'googledoc' || type === 'slideshare') {
+                $preview = $('<iframe>', {
+                    src: src,
+                    title: 'PDF preview',
+                    loading: 'lazy',
+                    allowfullscreen: true
+                }).attr({
+                    frameborder: '0',
+                    marginwidth: '0',
+                    marginheight: '0'
+                });
+                if (type === 'slideshare') {
+                    $preview.attr('scrolling', 'no');
+                }
+            } else {
+                $preview = $('<embed>', {
+                    src: src,
+                    width: '100%',
+                    height: '550',
+                    type: 'application/pdf'
+                });
+            }
+
+            $viewer.empty().append($preview).removeAttr('hidden');
+            $card.addClass('loaded');
+            $button.text('收起 PDF 预览').attr('aria-expanded', 'true');
+        });
+    };
+    lazyPdfInit();
+
     $('.modal').modal();
 
     /*回到顶部*/
